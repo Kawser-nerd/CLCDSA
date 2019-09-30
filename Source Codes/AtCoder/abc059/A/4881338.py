@@ -1,0 +1,5 @@
+l = input().split()
+a = l[0].upper()
+b = l[1].upper()
+c = l[2].upper()
+print(a[0]+b[0]+c[0])

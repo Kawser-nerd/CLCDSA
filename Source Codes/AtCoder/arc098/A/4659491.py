@@ -1,0 +1,1 @@
+from numpy import*;n=int(input());s=input();print(min(array(cumsum([0]+[(i=="W")for i in s][:n-1]))+s.count("E")-array(cumsum([i=="E"for i in s]))))

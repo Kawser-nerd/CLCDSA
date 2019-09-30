@@ -1,0 +1,1 @@
+n,k=map(int,open(0));print('YNEOS'[n<k*2::2])

@@ -1,0 +1,1 @@
+using System.Linq;class P{static void Main()=>System.Console.WriteLine(System.Console.ReadLine().Split().Select(long.Parse).Select((x,i)=>new[]{0,x+i-1,1,x+i}[(x+i)%4]).Aggregate((a,b)=>a^b));}

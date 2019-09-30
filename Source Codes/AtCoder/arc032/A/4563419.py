@@ -1,0 +1,1 @@
+print("BOWWOW"if int(input())!=2else"WANWAN")

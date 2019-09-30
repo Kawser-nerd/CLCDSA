@@ -1,0 +1,1 @@
+print('BWeotrtseer'[eval(input().replace(' ','>='))::2])

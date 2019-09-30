@@ -1,0 +1,1 @@
+print(["YES", "NO"][not("".join(reversed(input())) == input())])

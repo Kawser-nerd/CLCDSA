@@ -1,0 +1,1 @@
+s=input();print((len(s)**2-sum(s.count(chr(97+i))**2for i in range(26)))//2+1)

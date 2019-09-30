@@ -1,0 +1,8 @@
+N = int(input())
+L = sorted(map(int, input().split()))
+#1?N?????????L[N-1]
+
+if L[N-1] >= sum(L) - L[N-1]: #???????
+  print("No")
+else:
+  print("Yes")

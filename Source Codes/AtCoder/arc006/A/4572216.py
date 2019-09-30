@@ -1,0 +1,1 @@
+e,b,l=eval('set(input()),'*3);print(2*(l-e==b)or(~-len(l-e)%5+3)%6)

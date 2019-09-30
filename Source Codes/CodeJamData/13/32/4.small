@@ -1,0 +1,27 @@
+#include<stdio.h>
+int main(){
+  int T,t,i,n,ans,x,y;
+  scanf("%d",&T);
+  for(t=1;t<=T;t++){
+    scanf("%d",&x);
+    scanf("%d",&y);
+    printf("Case #%d: ",t);
+    if(x >= 0) {
+      for(i=0;i<x;i++)
+        printf("WE");
+    } else {
+      for(i=0;i<-x;i++)
+        printf("EW");
+    }
+
+    if(y >=0){
+      for(i=0;i<y;i++)
+        printf("SN");
+    } else{
+      for(i=0;i<-y;i++)
+        printf("NS");
+    }
+    printf("\n");
+  }
+  return 0;
+}

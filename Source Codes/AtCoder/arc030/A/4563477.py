@@ -1,0 +1,1 @@
+print("NO"if int(input())//2<int(input())else"YES")

@@ -1,0 +1,1 @@
+a,b=map(int,open(0));print(['ELQEUSASL'[a<b::2],'GREATER'][a>b])

@@ -1,0 +1,68 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.IO;
+using System.Diagnostics;
+
+namespace RAVE
+{
+	class TestCase
+	{
+		public TestCase(TextReader input)
+		{
+			var r = input.ReadInts();
+			N = r[0];
+			S = r[1];
+			P = r[2];
+			T = r.Skip(3).ToArray();
+		}
+
+		public int GetResult()
+		{
+			int canBeUnsurprisingCount = 0;
+			int mustBeSurprisingCount = 0;
+			foreach (var total in T)
+			{
+				var tripletsWithBestScoreAtLeastP = Triplet.LookupByTotal[total].Where(tr => tr.A >= P);
+				if (tripletsWithBestScoreAtLeastP.Any())
+					if (tripletsWithBestScoreAtLeastP.All(tr => tr.Surprising))
+						++mustBeSurprisingCount;
+					else
+						++canBeUnsurprisingCount;
+			}
+			return canBeUnsurprisingCount + Math.Min(mustBeSurprisingCount, S);
+		}
+
+		readonly int N;
+		readonly int S;
+		readonly int P;
+		readonly int[] T;
+	}
+
+	class Triplet
+	{
+		public static ILookup<int, Triplet> LookupByTotal = Create().ToLookup(triplet => triplet.T);
+
+		public readonly int A, B, C; // A is the best score
+		public readonly int T; // total score
+		public readonly bool Surprising;
+
+		Triplet(int a, int b, int c)
+		{
+			A = a;
+			B = b;
+			C = c;
+
+			T = a + b + c;
+			Surprising = c <= a - 2;
+		}
+
+		static IEnumerable<Triplet> Create()
+		{
+			for (int a = 10; a >= 0; --a)
+				for (int b = a; b >= 0 && b >= a - 2; --b)
+					for (int c = b; c >= 0 && c >= a - 2; --c)
+						yield return new Triplet(a, b, c);
+		}
+	}
+}

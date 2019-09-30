@@ -1,0 +1,1 @@
+import re;input();print(*re.sub("[a-z.,]","",input().lower().translate(str.maketrans({v:str(i//2)for i,v in enumerate("zrbcdwtjfqlvsxpmhkng")}))).split())

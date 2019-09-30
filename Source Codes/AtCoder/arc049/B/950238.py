@@ -1,0 +1,1 @@
+print(max([c1 * max(abs(x2 - x1) * c2 / (c1 + c2), abs(y2 - y1) * c2 / (c1 + c2)) for (x1, y1, c1), (x2, y2, c2) in __import__("itertools").combinations([list(map(int, input().split())) for x in range(int(input()))], 2)]))

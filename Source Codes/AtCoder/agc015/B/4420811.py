@@ -1,0 +1,1 @@
+s=input();n=len(s);print(n*~-n+sum((s[i]>'D')*i+(s[i]<'U')*(n-1-i)for i in range(n)))

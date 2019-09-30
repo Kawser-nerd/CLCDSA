@@ -1,0 +1,1 @@
+_,a=open(0);print(max(len(set(a[:s])&set(a[s:]))for s in range(99)))

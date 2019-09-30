@@ -1,0 +1,10 @@
+#include <cstdio>
+#include <iostream>
+using namespace std;
+#define DEBUG(X) cerr<<__LINE__<<" "<<#X<<": "<<X<<endl;
+#define sci(x) int x;scanf("%d",&x);
+#define scii(x, y) int x,y;scanf("%d%d",&x,&y);
+int main() {
+  scii(A,B)sci(C)
+  printf("%d\n",C/min(A,B));
+}

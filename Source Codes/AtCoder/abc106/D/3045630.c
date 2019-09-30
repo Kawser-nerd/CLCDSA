@@ -1,0 +1,7 @@
+#include <stdio.h>
+int main(){int i,p,q,l,r,N,M,Q,v,a[501][501]={};scanf("%d %d %d",&N,&M,&Q);for(i=M;i--;){scanf("%d %d",&l,&r);a[l][r]++;}for(i=Q;i--;printf("%d\n",v)){scanf("%d %d",&p,&q);if(q-p<=N>>1)for(v=0,l=p;l<=q;l++)for(r=l;r<=q;v+=a[l][r++]);else{for(v=M,l=1;l<p;l++)for(r=l;r<=N;v-=a[l][r++]);for(l=p;l<=q;l++)for(r=q;++r<=N;v-=a[l][r]);for(l=q+1;l<=N;l++)for(r=l;r<=N;v-=a[l][r++]);}}return 0;} ./Main.c: In function ‘main’:
+./Main.c:2:49: warning: ignoring return value of ‘scanf’, declared with attribute warn_unused_result [-Wunused-result]
+ int main(){int i,p,q,l,r,N,M,Q,v,a[501][501]={};scanf("%d %d %d",&N,&M,&Q);for(i=M;i--;){scanf("%d %d",&l,&r);a[l][r]++;}for(i=Q;i--;printf("%d\n",v)){scanf("%d %d",&p,&q);if(q-p<=N>>1)for(v=0,l=p;l<=q;l++)for(r=l;r<=q;v+=a[l][r++]);else{for(v=M,l=1;l<p;l++)for(r=l;r<=N;v-=a[l][r++]);for(l=p;l<=q;l++)for(r=q;++r<=N;v-=a[l][r]);for(l=q+1;l<=N;l++)for(r=l;r<=N;v-=a[l][r++]);}}return 0;}
+                                                 ^
+./Main.c:2:90: warning: ignoring return value of ‘scanf’, declared with attribute warn_unused_result [-Wunused-result]
+ int main(){int i,p,q,l,r,N,M,Q,v,a[501][501]={};scanf("%d %d %d",&N,&M,&Q);for(i=M;i--;){scanf("%d %d",&l,&r);a[l][r]++;}for(i=Q;i--;printf("%d\n",v)){scanf("%d %d",&p,&q);if(q-p<=N>>1)for(v=0,l=p;l<=q;l++)for(r=l;r<=q;v+=a[l][r++]);else{for(v=M,l=1;l<p;l++)for(r=l;r<=N;v-=a[l][r++]);for(l=p;l<=q;l++)for(r=q;++r<=...

@@ -1,0 +1,1 @@
+(lambda N,L,T:(lambda a,m:(lambda X,W:(lambda n:(lambda b:(lambda c:any(map(print,b[c:]+b[:c])))(b.index((X+[-T,T][W<2])%L)-[N-n,n][W<2]))(sorted((x+[-T,T][w<2])%L for x,w in a)))(sum(T//L*2+sum([X-x+L+i<=m,x-X+i<m][W<2]for i in[0,L])for x,w in a if w!=W)%N))(*a[0]))([list(map(int,input().split()))for _ in[0]*N],T%L*2))(*map(int,input().split()))

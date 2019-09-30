@@ -1,0 +1,1 @@
+input();a="takahashikun";print(sum(map(input()[:-1].split().count,[a,a.title(),a.upper()])))

@@ -1,0 +1,1 @@
+s=input();print(input().replace(s,""))

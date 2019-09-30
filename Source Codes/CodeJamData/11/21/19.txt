@@ -1,0 +1,95 @@
+#include<stdio.h>
+int main()
+{
+ 
+        int count=0,i,j,t,n;
+ 
+        long double win[1000],played[1000],wp[1000],owp[1000],oowp[1000];
+ 
+        char str[1000][1000];
+ 
+        scanf("%d",&t);
+        while(t--)
+ 
+        {
+                scanf("%d",&n);
+                for(i=0;i<n;i++)
+ 
+                {
+                        scanf("%s",str[i]);
+ 
+                        played[i]=0;
+                        win[i]=0;
+ 
+                        for(j=0;j<n;j++)
+ 
+                        {
+                                if(str[i][j]!='.')
+ 
+                                        played[i]+=1;
+                                 if(str[i][j]=='1')
+ 
+                                        win[i]+=1;
+                        }
+                }
+ 
+                for(i=0;i<n;i++)
+ 
+                {
+                        owp[i]=0.0;
+                        for(j=0;j<n;j++)
+ 
+                        {
+                                if(str[i][j]!='.'&&played[j]>1)
+ 
+                                {
+                                        if(str[i][j]=='1')
+ 
+                                        {
+                                                owp[i]+=(win[j]/(played[j]-1));
+ 
+                                        }
+                                        else
+                                        {
+                                                owp[i]+=((win[j]-1)/(played[j]-1));
+ 
+                                        }
+                                }
+                        //      printf("%d %d %Lf  ",i,j,owp[i]);
+                        }
+                        owp[i]=owp[i]/played[i];
+                        //printf("\n");
+                        wp[i]=win[i]/played[i];
+ 
+                }
+                for(i=0;i<n;i++)
+ 
+                {
+                        oowp[i]=0;
+                        for(j=0;j<n;j++)
+ 
+                        {
+                                if(str[i][j]!='.')
+ 
+                                {
+                                        oowp[i]+=owp[j];
+ 
+                                }
+                        }
+                        oowp[i]/=played[i];
+ 
+                }
+                count++;
+                printf("Case #%d:\n",count);
+ 
+                for(i=0;i<n;i++)
+ 
+                {
+                       // printf("%Lf %Lf %Lf %Lf %Lf\n",win[i],played[i],wp[i],owp[i],oowp[i]);
+ 
+ 
+                        printf("%Lf\n",0.25*wp[i]+0.5*owp[i]+0.25*oowp[i]);
+ 
+                }
+        }
+}

@@ -1,0 +1,1 @@
+print((lambda d,D,G:(lambda a:min(d['P']+max(0,d['q'])for i in range(1<<D)if d.update(P=0,g=0,k=-1)or any(d.update(P=d['P']+p,g=d['g']+c+100*p*-~j)if i>>j&1 else d.update(k=j)for j,(p,c)in enumerate(a))or d['k']<0 and[d.update(q=0)]or d.update(q=(G-d['g']-1)//(100*-~d['k'])+1)or a[d['k']][0]>d['q']))([list(map(int,input().split()))for _ in[0]*D]))({},*map(int,input().split())))

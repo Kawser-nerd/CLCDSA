@@ -1,0 +1,1 @@
+print(('1'in input())+1)

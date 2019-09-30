@@ -1,0 +1,1 @@
+using System;public class P{public static void Main(){int p=0;for(int i=0;i<3;i++){var s =Console.ReadLine().Split(' ');p+=int.Parse(s[0])*int.Parse(s[1])/10;}Console.WriteLine(p);}}

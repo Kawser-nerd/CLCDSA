@@ -1,0 +1,61 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <math.h>
+
+int main() {
+	int cases;
+	int case_id;
+	int i;
+	int a, b, c;
+	int ffn;
+	long long x, y, z, vx, vy, vz;
+	long long xadd, yadd, zadd, vxadd, vyadd, vzadd;
+	double fx, t;
+
+	freopen("B.in", "r", stdin);
+	freopen("B.out", "w", stdout);
+	scanf("%d", &cases);
+	for(case_id = 1; case_id <= cases; ++ case_id) {
+		printf("Case #%d: ", case_id);
+
+		scanf("%d", &ffn);
+
+		xadd = yadd = zadd = vxadd = vyadd = vzadd = 0;
+		for(i = 0; i < ffn; ++ i) {
+			scanf("%I64d %I64d %I64d %I64d %I64d %I64d", &x, &y, &z,
+										&vx, &vy, &vz);
+			xadd += x;
+			yadd += y;
+			zadd += z;
+			vxadd += vx;
+			vyadd += vy;
+			vzadd += vz;
+		}
+		c = xadd * xadd + yadd * yadd + zadd * zadd;
+		b = 2 * xadd * vxadd + 2 * yadd * vyadd + 2 * zadd * vzadd;
+		a = vxadd * vxadd + vyadd * vyadd + vzadd * vzadd;
+
+		//printf("a=%d b=%d c=%d\n", a, b, c);
+		if(a == 0) {
+			fx = (double)c;
+			t = 0;
+		} else {
+			if(b >= 0) {
+				fx = (double)c;
+				t = 0;
+			} else {
+				fx = (double)c - (double)b*b/(4*a);
+				t = -(double)b/(2*a);
+			}
+		}
+
+		if(fabs(fx) < 1e-6)
+			fx = 0;
+		fx = sqrt(fx) / ffn;
+
+		printf("%f %f\n", fx, t);
+	}
+
+	return 0;
+}

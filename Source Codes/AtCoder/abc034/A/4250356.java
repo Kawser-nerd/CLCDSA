@@ -1,0 +1,15 @@
+import java.util.Scanner;
+
+public class Main {
+
+	private static Scanner sc = new Scanner(System.in);
+
+	public static void main(String[] args) {
+		int a = sc.nextInt(), b = sc.nextInt();
+		if (a > b) {
+			System.out.println("Worse");
+		} else {
+			System.out.println("Better");
+		}
+	}
+}

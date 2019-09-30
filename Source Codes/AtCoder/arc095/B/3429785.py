@@ -1,0 +1,5 @@
+input()
+a=list(map(int,input().split()))
+m=max(a)
+d=min(a,key=lambda d:abs(m-2*d)if m!=d else 1e18)
+print(m,d)

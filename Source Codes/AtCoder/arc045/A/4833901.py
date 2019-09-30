@@ -1,0 +1,1 @@
+print(*['<A>'[ord(i[0])%4]for i in input().split()])

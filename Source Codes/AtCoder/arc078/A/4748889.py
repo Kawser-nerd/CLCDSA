@@ -1,0 +1,1 @@
+from numpy import*;n,*a=map(int,open(0).read().split());print(min(abs(cumsum(a[::-1])[::-1]-cumsum([0]+a[:-1]))[1:]))

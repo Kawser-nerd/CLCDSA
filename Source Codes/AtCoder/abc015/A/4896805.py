@@ -1,0 +1,1 @@
+print(max(open(0),key=len))

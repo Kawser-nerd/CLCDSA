@@ -1,0 +1,1 @@
+n=int(input());a=sorted((int(input()),i)for i in range(n));print(sum(a[i][1]%2for i in range(0,n,2)))

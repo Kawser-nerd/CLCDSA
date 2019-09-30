@@ -1,0 +1,1 @@
+a,b,c=map(int,sorted(input().split()));print(c if a==b else a)

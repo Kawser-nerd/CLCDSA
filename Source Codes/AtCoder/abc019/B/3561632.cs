@@ -1,0 +1,1 @@
+using System;public class P{public static void Main(){char[]s=Console.ReadLine().ToCharArray();int c=0;char? m=null;foreach(char a in s){if(a==m)c++;else{if(m!=null)Console.Write(m+c.ToString());c=1;m=a;}}Console.WriteLine(m+c.ToString());}}

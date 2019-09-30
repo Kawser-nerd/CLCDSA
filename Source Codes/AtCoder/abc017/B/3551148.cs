@@ -1,0 +1,1 @@
+using System;public class P{public static void Main(){Console.WriteLine(System.Text.RegularExpressions.Regex.IsMatch(Console.ReadLine(),"^(ch|o|k|u)*$")?"YES":"NO");}}

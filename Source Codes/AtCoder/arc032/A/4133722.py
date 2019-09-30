@@ -1,0 +1,1 @@
+print("WANWAN" if input()=="2" else "BOWWOW")

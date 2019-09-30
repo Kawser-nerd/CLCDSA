@@ -1,0 +1,41 @@
+#include <stdio.h>
+
+int a,b,t,i,j,k,s,ans;
+int p10[9];
+int size(int n){
+	int ret;
+	ret=0;
+	while(n>0){
+		ret++;
+		n/=10;
+	}
+	return ret;
+}
+
+int recycled(int x,int y){
+	int l;
+	//printf("%d %d %d:\n",x,y,s);
+	for(l=1;l<s;l++){
+		x=(x%10)*p10[s-1]+(x/10);
+		//printf("(%d %d)\n",x,y);
+		if(x==y)return 1;
+	}
+	return 0;
+}
+
+main(){
+	p10[0]=1;
+	for(i=1;i<8;i++)p10[i]=p10[i-1]*10;
+	scanf("%d\n",&t);
+	for(i=1;i<=t;i++){
+		scanf("%d %d\n",&a,&b);
+		ans=0;
+		s=size(a);
+		for(j=a;j<b;j++){
+			for(k=j+1;k<=b;k++){
+				if(recycled(j,k))ans++;
+			}
+		}
+		printf("Case #%d: %d\n",i,ans);
+	}
+}

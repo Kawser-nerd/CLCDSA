@@ -1,0 +1,1 @@
+s=5-"MoTuWeThFr".find(input()[:2])//2;print(s*(s<6))

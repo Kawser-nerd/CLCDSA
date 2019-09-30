@@ -1,0 +1,84 @@
+#include<cstdio>
+#include<iostream>
+#include<cmath>
+using namespace std;
+int A,B;
+int main()
+{
+	scanf("%d%d",&A,&B);
+	if(A>0&&B>0)
+	{
+		if(B>A)
+		{
+			printf("%d",B-A);
+		}
+		else
+		{
+			printf("%d",A-B+2);
+		}
+	}
+	if(A>0&&B<0)
+	{
+		if(abs(A)>abs(B))
+		{
+			printf("%d",abs(A)-abs(B)+1);
+		}
+		if(abs(A)<abs(B))
+		{
+			printf("%d",abs(B)-abs(A)+1);
+		}
+		if(abs(A)==abs(B))
+		{
+			printf("1");
+		}
+	}
+	if(A<0&&B>0)
+	{
+		if(abs(A)>abs(B))
+		{
+			printf("%d",abs(A)-B+1);
+		}
+		if(abs(A)<B)
+		{
+			printf("%d",B-abs(A)+1);
+		}
+		if(abs(A)==B)
+		{
+			printf("1");
+		}
+	}
+	if(A==0)
+	{
+		if(B>=0)
+		{
+			printf("%d",B-A);
+		}
+		else
+		{
+			printf("%d",A-B+1);
+		}
+	}
+	if(B==0)
+	{
+		if(A>0)
+		{
+			printf("%d",A+1);
+		}
+		if(A<0)
+		{
+			printf("%d",abs(A));
+		}
+	}
+	if(A<0&&B<0)
+	{
+		if(abs(A)>abs(B))
+		{
+			printf("%d",abs(abs(A)-abs(B)));
+		}
+		else if(abs(A)<abs(B))
+		{
+			printf("%d",abs(abs(A)-abs(B))+2);
+		}
+	}
+	return 0;
+}

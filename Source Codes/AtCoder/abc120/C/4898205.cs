@@ -1,0 +1,1 @@
+using System;using System.Linq;class P{static void Main(){var s=Console.ReadLine();var a=s.Count(x=>x=='0');var b=s.Count(x=>x=='1');Console.WriteLine((a<b?a:b)*2);}}

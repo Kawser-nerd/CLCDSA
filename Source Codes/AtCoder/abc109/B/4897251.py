@@ -1,0 +1,1 @@
+_,*l=open(0);print('YNeos'[any(a[-2]!=b[0]*l.count(a)for a,b in zip(l,l[1:]))::2])

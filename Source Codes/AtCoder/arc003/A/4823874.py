@@ -1,0 +1,1 @@
+n=int(input());s=input();print(sum(v*(4-k)for(k,v)in enumerate(map(s.count,"ABCD")))/n)

@@ -1,0 +1,1 @@
+used c2.cpp to determine period mod 1000

@@ -1,0 +1,1 @@
+print(len(range(*map(int,input().split())))+1)

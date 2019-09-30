@@ -1,0 +1,1 @@
+s=input();print(sorted(set(s[t:t+i]for t in range(len(s))for i in range(1,9)))[int(input())-1])

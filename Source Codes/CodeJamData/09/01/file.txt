@@ -1,0 +1,100 @@
+
+#include <stdio.h>
+#include <string.h>
+#include <map>
+#include <list>
+#include <set>
+#include <string>
+#include <vector>
+
+void GCJ_2009Qulification1(const char*input, const char*output)
+{
+    FILE* fin = freopen(input, "rb", stdin);
+    FILE* fout = freopen(output, "wb", stdout);
+
+#define MAX_L 15
+#define MAX_D 5000
+#define MAX_N 500
+
+    int N,L,D, ncase = 0;
+    char words[MAX_D][MAX_L + 1];
+
+    scanf("%d%d%d", &L, &D, &N);
+    //input dictionary
+    for (int i = 0; i < D; i ++)
+    {
+        scanf("%s", words[i]);
+    }
+
+    while (ncase ++ < N)
+    {
+        //run one test case
+        char testword[MAX_D] = {0};       
+
+        scanf("%s", testword);
+
+        //each char may have group words
+        //extract 'test word' in set<char>
+        std::vector< std::set<char>> ch;
+        ch.resize(L);
+
+        char*p = &testword[0];
+        for (int i = 0; i < L; i ++)
+        {
+            if (*p == '(')
+            {
+                *p ++;
+
+                while (*p != ')')
+                {
+                    ch[i].insert(*p ++);
+                }
+            }
+            else
+            {
+                ch[i].insert(*p);
+            }
+
+            *p ++;
+        }
+
+        //compute the matched
+        int nMatched = 0;
+        for (int i = 0; i < D; i ++)
+        {
+            bool match = true;
+
+            for (int j = 0; j < L; j ++)
+            {
+                //compare each ch
+                if (ch[j].find(words[i][j]) == ch[j].end())
+                {
+                    match = false;
+                    break;
+                }
+            }
+
+            if (match)
+            {
+                nMatched ++;
+            }
+        }
+
+        //output the results
+        printf("Case #%d: %d\n", ncase, nMatched);
+    }
+
+    fclose(fin);
+    fclose(fout);
+}
+
+int main(int argc, char** argv)
+{
+    char*in_file = "gcj.in";
+    char*out_file = "gcj.out";
+
+    GCJ_2009Qulification1(in_file, out_file);
+
+
+    return 0;
+}

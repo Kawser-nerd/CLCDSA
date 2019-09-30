@@ -1,0 +1,1 @@
+print((lambda N:(lambda T,d:min(d.update(a=[[T[-1]],[]])or any(d['a'][i>>j&1].append(T[j])for j in range(N-1))or max(map(sum,d['a']))for i in range(1<<N-1)))([int(input())for _ in[0]*N],{}))(int(input())))

@@ -1,0 +1,86 @@
+using System;
+using System.Collections.Generic;
+using System.Text;
+using System.IO;
+
+class Program
+{
+    static double[,] combination;
+    static void init()
+    {
+        combination = new double[41, 41];
+        combination[0, 0] = 1.0;
+        for (int i = 1; i <= 40; ++i)
+        {
+            combination[i, 0] = combination[i, i] = 1.0;
+            for (int j = 1; j < i; ++j)
+            {
+                combination[i, j] = combination[i - 1, j] + combination[i - 1, j - 1];
+            }
+        }
+    }
+    static double solve(int n, int c)
+    {
+        if (n == c)
+            return 1.0;
+        double[,] transform = new double[n + 1, n + 1];
+        for (int i = 0; i <= n; ++i)
+        {
+            for (int j = 0; j <= n; ++j)
+            {
+                if (j < c || j < i || j - i > c)
+                {
+                    transform[i, j] = 0.0;
+                }
+                else
+                {
+                    transform[i, j] = combination[n - i, j - i] * combination[i, c - j + i] / combination[n, c];
+                }
+            }
+        }
+
+        double result = 0;
+        double[][] p = new double[2][];
+        p[0] = new double[n + 1];
+        p[0][c] = 1.0;
+        int step = 1, index = 0;
+        for (; ;)
+        {
+            p[1 - index] = new double[n + 1];
+            for (int i = c; i <= n; ++i)
+            {
+                for (int j = i; j <= n; ++j)
+                {
+                    p[1 - index][j] += p[index][i] * transform[i, j];
+                }
+            }
+            ++step;
+            result += (p[1 - index][n] - p[index][n]) * step;
+            index = 1 - index;
+
+            if ((1 - p[index][n]) * step < 1e-8)
+                break;
+        }
+
+        return result;
+    }
+    static void Main(string[] args)
+    {
+        init();
+        Stream input = Console.OpenStandardInput(10240);
+        Console.SetIn(new StreamReader(input));
+        FileStream fs = new FileStream("D:\\gcj.txt", FileMode.Create);
+        StreamWriter sw = new StreamWriter(fs);
+
+        int ntests = 0;
+        ntests = int.Parse(Console.ReadLine());
+        for (int i = 0; i < ntests; ++i)
+        {
+            string str = Console.ReadLine();
+            int n = int.Parse(str.Split()[0]);
+            int c = int.Parse(str.Split()[1]);
+            sw.WriteLine("Case #{0}: {1:f7}", i + 1, solve(n, c));
+            sw.Flush();
+        }
+    }
+}

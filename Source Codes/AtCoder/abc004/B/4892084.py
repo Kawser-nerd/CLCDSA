@@ -1,0 +1,8 @@
+A = input()
+B = input()
+C = input()
+D = input()
+print(D[::-1])
+print(C[::-1])
+print(B[::-1])
+print(A[::-1])

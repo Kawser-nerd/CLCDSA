@@ -1,0 +1,1 @@
+s=input();print(sorted({s[I//6:I//6+I%6]for I in range(len(s)*6)})[int(input())])

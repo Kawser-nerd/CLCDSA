@@ -1,0 +1,80 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace round2
+{
+    public class Vine
+    {
+        public int dst;
+        public int len;
+    }
+
+    public class ProblemA
+    {
+        public static void Run(string infile, string outfile)
+        {
+            using (System.IO.StreamReader sr = System.IO.File.OpenText(infile))
+            {
+                using (System.IO.StreamWriter sw = System.IO.File.CreateText(outfile))
+                {
+                    int T = int.Parse(sr.ReadLine());
+
+                    for (int t = 1; t <= T; t++)
+                    {
+                        List<Vine> vines = new List<Vine>();
+
+                        int N = int.Parse(sr.ReadLine());
+                        for (int i = 0; i < N; i++)
+                        {
+                            string s = sr.ReadLine();
+                            string[] ss = s.Split(' ');
+                            int d = int.Parse(ss[0]);
+                            int l = int.Parse(ss[1]);
+
+                            if (i == 0)
+                            {
+                                vines.Add(new Vine() { dst = d, len = d });
+                            }
+                            else
+                            {
+                                for (int j = vines.Count - 1; j >= 0; j--)
+                                {
+                                    if (vines[j].len < d - vines[j].dst) vines.RemoveAt(j);
+                                }
+                                //foreach (Vine vine in vines) if (vine.len < d - vine.dst) vines.Remove(vine);
+
+                                int lmax = 0;
+                                foreach (Vine vine in vines)
+                                {
+                                    lmax = Math.Max(lmax, d - vine.dst);
+                                    if (lmax > l)
+                                    {
+                                        lmax = l;
+                                        break;
+                                    }
+                                }
+
+                                vines.Add(new Vine() { dst = d, len = lmax });
+                            }
+                        }
+                        int D = int.Parse(sr.ReadLine());
+
+                        bool OK = false;
+                        foreach (Vine vine in vines)
+                        {
+                            if (vine.len >= D - vine.dst)
+                            {
+                                OK = true;
+                                break;
+                            }
+                        }
+
+                        sw.WriteLine(string.Format("Case #{0}: {1}", t, OK ? "YES" : "NO"));
+                    }
+                }
+            }
+        }
+    }
+}

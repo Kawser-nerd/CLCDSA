@@ -1,0 +1,140 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<math.h>
+#include<string.h>
+
+struct node{
+	int in;
+	int out;
+	int num;
+};
+
+struct node1{
+	int state;
+	int inout;
+	int id;
+};
+
+typedef node1 Node1;
+
+typedef node Node;
+
+Node list[10000];
+
+Node1 list1[20000];
+
+int cmp(Node1 timeUnit1, Node1 timeUnit2) {
+		
+		if(timeUnit1.state!=timeUnit2.state)return timeUnit1.state-timeUnit2.state; 
+		if(timeUnit1.inout!=timeUnit2.inout)return timeUnit1.inout-timeUnit2.inout;
+		return timeUnit1.id-timeUnit2.id;
+	}
+
+void qsort(int start, int end) {
+		
+		if(start>=end)return;
+		int i,j;
+		i=start;
+		j=end-1;
+		Node1 key=list1[i];
+		while(i<j){			
+			while(cmp(key,list1[j])<=0&&i<j){
+				j--;
+			}
+			list1[i]=list1[j];		
+			while(cmp(list1[i],key)<=0&&i<j){
+				i++;
+			}
+			list1[j]=list1[i];	
+			
+		}
+		list1[j]=key;
+		
+		qsort(start,j);
+		qsort(j+1,end);
+	}
+
+
+	
+
+int main(){
+	int k;
+	scanf("%d",&k);
+	for(int iii=0;iii<k;iii++){
+		
+		int n,m;
+		scanf("%d%d",&n,&m);
+		
+		for(int i=0;i<m;i++){
+			scanf("%d%d%d",&list[i].in,&list[i].out,&list[i].num);
+			list1[i*2].state=list[i].in;
+			list1[i*2+1].state=list[i].out;
+			list1[i*2].inout=0;
+			list1[i*2+1].inout=1;
+			list1[i*2].id=i;
+			list1[i*2+1].id=i;
+		}		
+
+		qsort(0,m*2);
+
+		int passage[2005][2];
+
+		int p=0;
+
+		int mount1=0;
+
+		//for(int i=0;i<m*2;i++)printf("%d %d %d\n",list1[i].id,list1[i].inout,list1[i].state);
+
+		for(int i=0;i<m*2;i++){
+			if(list1[i].inout==0)
+			{
+				passage[p][0]=list1[i].state;
+				passage[p][1]=list[list1[i].id].num;
+				p++;
+
+			//	for(int j=0;j<p;j++){printf("(%d %d)",passage[j][0],passage[j][1]);}
+				//printf("\n");
+			}
+			else
+			{
+				int count=list[list1[i].id].num;
+				
+				while(count>0){
+				   int d=list1[i].state-passage[p-1][0]-1;
+						
+					if(count>=passage[p-1][1]){
+						
+						mount1+=passage[p-1][1]*((d+1)*(2*n-d))/2;
+						count-=passage[p-1][1];
+						p--;
+
+
+					}
+					else{
+						mount1+=count*((d+1)*(2*n-d))/2;
+						passage[p-1][1]-=count;
+						count=0;
+					}
+					mount1%=1000002013;
+				//	printf("%d %d\n",d,mount1);
+				}
+				
+			}
+		}
+
+		int mount2=0;
+
+		for(int i=0;i<m;i++){
+			int d=list[i].out-list[i].in-1;
+			mount2+=list[i].num*(2*n-d)*(d+1)/2;
+		}
+
+		mount2%=1000002013;
+
+		int result=(mount2-mount1)%1000002013;
+
+		printf("Case #%d: %d\n",iii+1,result);
+	}
+	return 0;
+}
+

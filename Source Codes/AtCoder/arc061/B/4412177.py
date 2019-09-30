@@ -1,0 +1,11 @@
+f=lambda:map(int,input().split())
+h,w,n=f()
+c=[0]*10
+c[0]=(h-2)*(w-2)
+d={}
+while n:
+ n-=1;x,y=f()
+ for i in range(9):
+  a=(x+i%3,y+i//3)
+  if h>=x+i%3>2<y+i//3<=w:d[a]=d.get(a,0)+1;c[d[a]-1]-=1;c[d[a]]+=1
+print(*c)

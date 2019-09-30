@@ -1,0 +1,7 @@
+Compile:
+  gcc -O2 generator.c -o generator
+  g++ -O2 happy.C -o happy
+  ./generator > happies.txt
+  Then run happy with the test case.
+
+

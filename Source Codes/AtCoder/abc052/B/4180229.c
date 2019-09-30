@@ -1,0 +1,27 @@
+#include<stdio.h>
+
+int main(){
+    int n,x=0,i,max=0;
+    char s[101];
+    char tmp;
+
+    scanf("%d",&n);
+    scanf("%s",s);
+
+    for(i=0;i<n;i++){
+        if(s[i]=='I'){
+            x++;
+            if(max<x){
+                max = x;
+            }
+        }else{ x--;}
+    }
+    printf("%d",max);
+    return 0;
+} ./Main.c: In function ‘main’:
+./Main.c:8:5: warning: ignoring return value of ‘scanf’, declared with attribute warn_unused_result [-Wunused-result]
+     scanf("%d",&n);
+     ^
+./Main.c:9:5: warning: ignoring return value of ‘scanf’, declared with attribute warn_unused_result [-Wunused-result]
+     scanf("%s",s);
+     ^

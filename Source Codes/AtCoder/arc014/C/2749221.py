@@ -1,0 +1,1 @@
+print((lambda n,l:sum([l.count(c)%2 for c in ['R','G','B']]))(input(),input()))

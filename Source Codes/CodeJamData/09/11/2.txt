@@ -1,0 +1,66 @@
+using System;
+using System.Collections.Generic;
+using System.Text;
+using System.IO;
+
+class Program
+{
+    static Dictionary<int, bool>[] dict = new Dictionary<int, bool>[11];
+    static bool isHappy(int number, int b, List<int> history)
+    {
+        if (dict[b].ContainsKey(number))
+            return dict[b][number];
+        int n = number, temp = 0;
+        while (n > 0)
+        {
+            temp += (n % b) * (n % b);
+            n /= b;
+        }
+        if (history.Contains(temp))
+        {
+            dict[b][number] = false;
+            return false;
+        }
+        history.Add(temp);
+        bool result = temp == 1 ? true : isHappy(temp, b, history);
+        if (number >= 1000)
+            dict[b][number] = result;
+        return result;
+    }
+    static int solve(int[] bases)
+    {
+        int n = 2;
+        for (; ; ++n)
+        {
+            bool ok = true;
+            foreach (int b in bases)
+            {
+                if (!isHappy(n, b, new List<int>()))
+                {
+                    ok = false;
+                    break;
+                }
+            }
+            if (ok)
+                return n;
+        }
+    }
+    static void Main(string[] args)
+    {
+        for (int i = 0; i < 11; ++i)
+            dict[i] = new Dictionary<int, bool>();
+        Stream input = Console.OpenStandardInput(10240);
+        Console.SetIn(new StreamReader(input));
+        FileStream fs = new FileStream("D:\\gcj.txt", FileMode.Create);
+        StreamWriter sw = new StreamWriter(fs);
+
+        int n = 0;
+        n = int.Parse(Console.ReadLine());
+        for (int i = 0; i < n; ++i)
+        {
+            int[] b = Array.ConvertAll<string, int>(Console.ReadLine().Split(), int.Parse);
+            sw.WriteLine("Case #{0}: {1}", i + 1, solve(b));
+            sw.Flush();
+        }
+    }
+}

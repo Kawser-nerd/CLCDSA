@@ -1,0 +1,52 @@
+#include <cstdio>
+#include <cstring>
+
+#define MAX 105
+#define MOD 10007
+
+void input(void);
+void solve(void);
+
+int n, m, r;
+int G[MAX][MAX];
+int F[MAX][MAX];
+int case_cnt = 1;
+
+int main(void)
+{
+  int t;
+  scanf("%d", &t);
+  while(t--) {
+    input();
+    solve();
+  }
+    
+  return 0;
+}
+
+void input(void)
+{
+  scanf("%d %d %d", &n, &m, &r);
+  memset(G, 0, sizeof(G));
+  for(int i = 0; i < r; i++) {
+    int a, b;
+    scanf("%d %d", &a, &b);
+    G[a][b] = 1;
+  }
+}
+  
+void solve(void)
+{
+  for(int i = n; i >= 1; i--)
+    for(int j = m; j >= 1; j--) {
+      if(i == n && j == m) { F[i][j] = (G[i][j] == 1) ? 0 : 1; continue; }
+      F[i][j] = 0;
+      if(G[i][j] == 1) continue;
+      if(i + 2 <= n && j + 1 <= m) F[i][j] += F[i + 2][j + 1];
+      if(i + 1 <= n && j + 2 <= m) F[i][j] += F[i + 1][j + 2];
+      F[i][j] %= MOD;
+    }
+    printf("Case #%d: %d\n", case_cnt++, F[1][1]);
+}
+
+      

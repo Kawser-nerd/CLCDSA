@@ -1,0 +1,14 @@
+using System;
+using System.Linq;//??????
+using System.Collections.Generic;
+using System.Text;//????????????
+class Program
+{
+	static void Main()
+	{
+		string[] input = Console.ReadLine().Split(' ');//Split???????????????????
+		long x = long.Parse(input[0]);
+		long y = long.Parse(input[1]);
+    Console.WriteLine((Math.Abs(x-y) >= 2) ? "Alice" : "Brown");
+	}
+}

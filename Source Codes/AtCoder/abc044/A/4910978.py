@@ -1,0 +1,1 @@
+n,k,x,y=map(int,open(0));print(min(n,k)*x+max(n-k,0)*y)

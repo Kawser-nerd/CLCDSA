@@ -1,0 +1,1 @@
+n,m=map(int,input().split());l=eval('input().split(),'*n);print(max(sum(sorted(sum(int(x[i])*(k>>i&1or-1)for i in range(3))for x in l)[:-m-1:-1])for k in range(8)))

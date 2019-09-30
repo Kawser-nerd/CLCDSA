@@ -1,0 +1,1 @@
+import re;print(re.search(r"i.*c.*t",input(),re.I)and'YES'or'NO')

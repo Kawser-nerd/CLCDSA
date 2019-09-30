@@ -1,0 +1,1 @@
+s,*n=str(int(input())+1);print(int(s)+9*len(n)-1)

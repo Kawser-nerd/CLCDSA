@@ -1,0 +1,1 @@
+print(sorted([s*str(i)for i in range(1,10)for s in range(1,7)],key=lambda x:len(x))[int(input())-1])

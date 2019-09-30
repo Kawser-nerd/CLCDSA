@@ -1,0 +1,7 @@
+#include<stdio.h>
+int main(void){long long i,n,c[1000002],d,ans,amin=1000001,bmax=0;scanf("%lld",&n);long long a[n],b[n];for(i=0;i<n;i++)scanf("%lld%lld",&a[i],&b[i]);for(i=0;i<n;i++){if(amin>a[i])amin=a[i];if(bmax<b[i])bmax=b[i];}for(i=amin;i<bmax+1;i++)c[i]=0;for(i=0;i<n;i++){c[a[i]]++;c[b[i]+1]--;}d=ans=0;for(i=amin;i<=bmax;i++){d+=c[i];if(d>ans)ans=d;}printf("%lld\n",ans);return 0;} ./Main.c: In function ‘main’:
+./Main.c:2:67: warning: ignoring return value of ‘scanf’, declared with attribute warn_unused_result [-Wunused-result]
+ int main(void){long long i,n,c[1000002],d,ans,amin=1000001,bmax=0;scanf("%lld",&n);long long a[n],b[n];for(i=0;i<n;i++)scanf("%lld%lld",&a[i],&b[i]);for(i=0;i<n;i++){if(amin>a[i])amin=a[i];if(bmax<b[i])bmax=b[i];}for(i=amin;i<bmax+1;i++)c[i]=0;for(i=0;i<n;i++){c[a[i]]++;c[b[i]+1]--;}d=ans=0;for(i=amin;i<=bmax;i++){d+=c[i];if(d>ans)ans=d;}printf("%lld\n",ans);return 0;}
+                                                                   ^
+./Main.c:2:120: warning: ignoring return value of ‘scanf’, declared with attribute warn_unused_result [-Wunused-result]
+ int main(void){long long i,n,c[1000002],d,ans,amin=1000001,bmax=0;scanf("%lld",&n);long long a[n],b[n];for(i=0;i<n;i++)scanf("%lld%lld",&a[i],&b[i]);for(i=0;i<n;i++){if(amin>a[i])amin=a[i];if(bmax<b[i])bmax=b[i];}for(i=amin;i<bmax+1;i++)c[i]=0;for(i=0;i<n;i++){c[a[i]]++;c[b[i]+1]--;}d=ans=0;for(i=amin;i<=bmax;i...

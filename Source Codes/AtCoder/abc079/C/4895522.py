@@ -1,0 +1,1 @@
+(lambda o,f,A,B,C,D:any(f(('{}'*7).format(A,i,B,j,C,k,D))for i in o for j in o for k in o))('+-',lambda s:7==eval(s)and[print(s+'=7')],*input())

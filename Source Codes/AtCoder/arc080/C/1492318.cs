@@ -1,0 +1,145 @@
+#pragma warning disable
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System;
+using System.Collections;
+using static System.Math;
+using static System.Console;
+class E { static void Main() => new J(); }
+class J
+{
+	public const int Mod = 1000000007;
+	int F() => int.Parse(ReadLine());
+	int[] G() => ReadLine().Split(new char[] { ' ', '\t' }, StringSplitOptions.RemoveEmptyEntries).Select(int.Parse).ToArray();
+	public J()
+	{
+		SetOut(new StreamWriter(OpenStandardOutput()) { AutoFlush = false });
+		Solve();
+		Out.Flush();
+	}
+	void Solve() => WriteLine(string.Join(" ", Calc()));
+	List<int> Calc()
+	{
+		var N = F();
+		var a = G();
+		for (var i = 0; i < N; i++) a[i]--;
+		var rev = new int[N];
+		for (var i = 0; i < N; i++) rev[a[i]] = i;
+		var par = new[] { new RMQ(N), new RMQ(N) };
+		for (var i = 0; i < N; i++)
+		{
+			par[i & 1][i] = a[i];
+			par[1 - (i & 1)][i] = Mod;
+		}
+		var que = new PriorityQueue();
+		var dict = new Dictionary<int, P>();
+		Action<P> add = p =>
+		{
+			var z = par[p.l & 1].Min(p);
+			if (z < Mod) { dict[z] = p; que.Enqueue(z); }
+		};
+		add(new P(0, N));
+		var ans = new List<int>();
+		while (que.Count > 0)
+		{
+			int x = que.Dequeue(), i = rev[x];
+			var p = dict[x];
+			int f = p.l & 1, y = par[1 - f].Min(i + 1, p.r), j = rev[y];
+			ans.Add(x + 1);
+			ans.Add(y + 1);
+			add(new P(p.l, i));
+			add(new P(i + 1, j));
+			add(new P(j + 1, p.r));
+		}
+		return ans;
+	}
+	long GCD(long a, long b)
+	{
+		var n = (ulong)Abs(a); var m = (ulong)Abs(b);
+		if (n == 0) return (long)m; if (m == 0) return (long)n;
+		int zm = 0, zn = 0;
+		while ((n & 1) == 0) { n >>= 1; zn++; }
+		while ((m & 1) == 0) { m >>= 1; zm++; }
+		while (m != n)
+		{
+			if (m > n) { m -= n; while ((m & 1) == 0) m >>= 1; }
+			else { n -= m; while ((n & 1) == 0) n >>= 1; }
+		}
+		return (long)n << Min(zm, zn);
+	}
+}
+struct P
+{
+	public int l, r;
+	public P(int x, int y) { l = x; r = y; }
+}
+class RMQ
+{
+	int N2;
+	int[] seg;
+	public RMQ(int N)
+	{
+		N2 = 1;
+		while (N2 < N) N2 <<= 1;
+		seg = new int[2 * N2 - 1];
+		for (var i = 0; i < 2 * N2 - 1; i++) seg[i] = J.Mod;
+	}
+	public void Update(int i, int v)
+	{
+		i += N2 - 1;
+		seg[i] = v;
+		while (i > 0)
+		{
+			i = (i - 1) / 2;
+			seg[i] = Math.Min(seg[i * 2 + 1], seg[i * 2 + 2]);
+		}
+	}
+	public int this[int n] { get { return Min(n, n + 1); } set { Update(n, value); } }
+	public int Min(P p) => Min(p.l, p.r);
+	public int Min(int from, int to) => Min(from, to, 0, 0, N2);
+	int Min(int from, int to, int node, int l, int r)
+	{
+		if (to <= l || r <= from) return J.Mod;
+		else if (from <= l && r <= to) return seg[node];
+		else return Math.Min(Min(from, to, 2 * node + 1, l, (l + r) >> 1), Min(from, to, 2 * node + 2, (l + r) >> 1, r));
+	}
+}
+class PriorityQueue
+{
+	List<int> list = new List<int>();
+	public int Count { get; private set; } = 0;
+	public PriorityQueue() { }
+	public void Enqueue(int x)
+	{
+		var pos = Count++;
+		list.Add(x);
+		while (pos > 0)
+		{
+			var p = (pos - 1) / 2;
+			if (list[p] <= x) break;
+			list[pos] = list[p];
+			pos = p;
+		}
+		list[pos] = x;
+	}
+	public int Dequeue()
+	{
+		var value = list[0];
+		var x = list[--Count];
+		list.RemoveAt(Count);
+		if (Count == 0) return value;
+		var pos = 0;
+		while (pos * 2 + 1 < Count)
+		{
+			var a = 2 * pos + 1;
+			var b = 2 * pos + 2;
+			if (b < Count && list[b] < list[a]) a = b;
+			if (list[a] >= x) break;
+			list[pos] = list[a];
+			pos = a;
+		}
+		list[pos] = x;
+		return value;
+	}
+}

@@ -1,0 +1,1 @@
+print('YES' if input().replace('ch','').replace('o','').replace('k','').replace('u','')=='' else 'NO')

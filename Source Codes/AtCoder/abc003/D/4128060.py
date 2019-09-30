@@ -1,0 +1,1 @@
+print(sum(f(x*y,x*y-s)//f(s)*f(s,L)//f(D)*(R-X+1)*(C-Y+1)*(-1)**(a+b%2)for R,C,X,Y,D,L in[(int(x)for _ in[0]*3 for x in input().split())]for a in[0,1,1,2]for b in[0,1,1,2]for x,y,f,s in[[X-a,Y-b,lambda x,y=0:x>y and x*f(x-1,y)or 1,D+L]]if min(x,y)>0 and s<=(x*y))%(10**9+7))

@@ -1,0 +1,59 @@
+#include <stdio.h>
+#include <string.h>
+#define N 20
+#define M 1200 
+int n,a[N];
+char s[N][M],tmp[M];
+bool use[N],fuck[30];
+int ans;
+bool check()
+{
+	memset(tmp,0,sizeof(tmp));
+	for (int i=1;i<=n;i++)
+		strcat(tmp,s[a[i]]);
+	int l = strlen(tmp);
+	memset(fuck,0,sizeof(fuck));
+	for (int i=0;i<l;i++)
+	{
+		int x = tmp[i] - 'a';
+		if (!fuck[x])
+		{
+			fuck[x] = true;
+			while (tmp[i+1]==tmp[i]) i++;
+		}
+		else return false;
+	}
+	return true;
+}
+void dfs(int k)
+{
+	if (k>n) {if (check()) ans ++; return;}
+	if (!check) return;
+	for (int i=1;i<=n;i++)
+	{
+		if (!use[i])
+		{
+			use[i] = true;
+			a[k] = i;
+			dfs(k+1);
+			use[i] = false;
+		}
+	}
+}
+int main()
+{
+	freopen("d:\\1.in","r",stdin);
+	freopen("d:\\1.txt","w",stdout);
+	int t;
+	scanf("%d",&t);
+	for (int k=1;k<=t;k++)
+	{
+		scanf("%d",&n);
+		for (int i=1;i<=n;i++) scanf("%s",&s[i]);
+		memset(use,0,sizeof(use));
+		ans = 0;
+		dfs(1);
+		printf("Case #%d: %d\n",k,ans);
+	}
+	return 0;
+}

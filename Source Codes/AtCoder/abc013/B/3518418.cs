@@ -1,0 +1,1 @@
+using System;public class P{public static void Main(){int a=int.Parse(Console.ReadLine()),b=int.Parse(Console.ReadLine()), c;Console.WriteLine((c=Math.Abs(a-b))<=5?c:10-c);}}

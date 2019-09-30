@@ -1,0 +1,205 @@
+package jam;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.util.Arrays;
+import java.util.StringTokenizer;
+
+public class Pogo
+{
+	public static void main(String[] args) throws Exception
+	{
+		BufferedReader br = new BufferedReader(new FileReader("/Users/anderson/Downloads/B-small-attempt0.in"));
+		
+		int numCases = Integer.parseInt(br.readLine());
+		String[] results = new String[numCases]; 
+		
+		int[] triangularNums = new int[10000];
+		for (int i=1; i<triangularNums.length; i++)
+		{
+			triangularNums[i] = i*(i+1)/2;
+		}
+		
+		for (int i=0; i<numCases; i++)
+		{
+			String[] blah = br.readLine().split(" ");
+			int X = Integer.parseInt(blah[0]);
+			int Y = Integer.parseInt(blah[1]);
+			int x = Math.abs(X);
+			int y = Math.abs(Y);
+			int currX = x;
+			int currY = y;
+			int distance = x+y;
+			int minMoves = -4;
+			if (distance%2==0)
+				for (int j=1; j<triangularNums.length; j++)
+				{
+					if (j%4==1 || j%4==2)
+						continue;
+					if (triangularNums[j]>=distance)
+					{
+						minMoves = j;
+						break;
+					}
+				}
+			else if (distance%2==1)
+				for (int j=1; j<triangularNums.length; j++)
+				{
+					if (j%4==0 || j%4==3)
+						continue;
+					if (triangularNums[j]>=distance)
+					{
+						minMoves = j;
+						break;
+					}
+				}
+			/*if (minMoves==-4)
+			{
+				System.out.println("something went wrong");
+				continue;
+			}*/
+			char[] sol = new char[minMoves+1];
+			boolean[] used = new boolean[minMoves+1];
+			int difference = (triangularNums[minMoves] - distance)/2;
+			int tryDiff = minMoves;
+			boolean[] negative = new boolean[minMoves+1];
+			if (x!=0)
+			{
+				while (true)
+				{
+					if (difference<=tryDiff)
+					{
+						negative[difference] = true;
+						used[difference] = true;
+						sol[difference] = 'W';
+						currX += difference;
+						break;
+					}
+					else
+					{
+						negative[tryDiff] = true;
+						used[tryDiff] = true;
+						sol[tryDiff] = 'W';
+						currX += tryDiff;
+						difference -= tryDiff;
+						tryDiff--;
+					}
+				}
+			}
+			else if (x==0)
+			{
+				while (true)
+				{
+					if (difference<=tryDiff)
+					{
+						negative[difference] = true;
+						used[difference] = true;
+						sol[difference] = 'S';
+						currY += difference;
+						break;
+					}
+					else
+					{
+						negative[tryDiff] = true;
+						used[tryDiff] = true;
+						sol[tryDiff] = 'S';
+						currY += tryDiff;
+						difference -= tryDiff;
+						tryDiff--;
+					}
+				}
+			}
+			int tryX = minMoves;
+			while (true)
+			{
+				if (used[tryX])
+				{
+					tryX--;
+				}
+				else if (currX == tryX+1 && used[1] && tryX>3)
+				{
+					tryX--;
+				}
+				else if (currX == tryX+2 && used[2] && tryX>4)
+				{
+					tryX--;
+				}
+				else if (currX<=tryX)
+				{
+					used[currX] = true;
+					sol[currX] = 'E';
+					break;
+				}
+				else
+				{
+					used[tryX] = true;
+					sol[tryX] = 'E';
+					currX -= tryX;
+					tryX--;
+				}
+			}
+			int currTryY = minMoves;
+			while (true)
+			{
+				if (currTryY==0)
+					break;
+				else if (used[currTryY])
+				{
+					currTryY--;
+					continue;
+				}
+				else if (currY>=0)
+				{
+					currY -= currTryY;
+					sol[currTryY] = 'N';
+					currTryY--;
+				}
+				else if (currY<0)
+				{
+					currY += currTryY;
+					sol[currTryY] = 'S';
+					currTryY--;
+				}
+			}
+			if (currY!=0)
+				System.out.println("uh oh!"+X+" "+Y);
+			if (X<0)
+			{
+				for (int j=1; j<sol.length; j++)
+				{
+					if (sol[j]=='E')
+						sol[j]='W';
+					else if (sol[j]=='W')
+						sol[j]='E';
+				}
+			}
+			if (Y<0)
+			{
+				for (int j=1; j<sol.length; j++)
+				{
+					if (sol[j]=='N')
+						sol[j]='S';
+					else if (sol[j]=='S')
+						sol[j]='N';
+				}
+			}
+			String answer = "";
+			for (int j=1; j<sol.length; j++)
+			{
+				answer += sol[j];
+			}
+			results[i] = answer;
+		}
+		br.close();
+		BufferedWriter bw = new BufferedWriter(new FileWriter("/Users/anderson/Downloads/pogosol.txt"));
+		for (int i=0; i<results.length; i++)
+		{
+			bw.write("Case #"+(i+1)+": "+results[i]+"\n");
+		}
+		bw.close();
+		
+
+	}
+}

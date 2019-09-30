@@ -1,0 +1,1 @@
+_,*t=map(int,open(0));print(min(t))

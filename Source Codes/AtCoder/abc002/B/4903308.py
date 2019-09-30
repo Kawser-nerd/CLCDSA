@@ -1,0 +1,1 @@
+print(''.join([s for s in input() if s not in ['a','i','u','e','o']]))

@@ -1,0 +1,1 @@
+import java.util.*;public class Main {public static void main(String[]$) {Scanner c=new Scanner(System.in);double l=c.nextInt(),x=c.nextInt(),y=c.nextInt(),s=c.nextInt(),d=c.nextInt();System.out.println(s==d?0:Math.min((d-s+(d>s?0:l))/(y+x),(s-d+(d>s?l:0))/Math.max(y-x,0)));}}

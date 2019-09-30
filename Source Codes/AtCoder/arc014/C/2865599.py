@@ -1,0 +1,6 @@
+N = int(input())
+s = input()
+r = s.count("R")
+g = s.count("G")
+b = s.count("B")
+print(r%2 + g%2 + b%2)

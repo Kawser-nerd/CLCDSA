@@ -1,0 +1,1 @@
+print(sum(a[1]%2for a in sorted((int(input()),i)for i in range(int(input())))[::2]))

@@ -1,0 +1,1 @@
+a,b,c=map(int,sorted(input().split()));print([0,a*b][(a%2+b%2+c%2)%2])

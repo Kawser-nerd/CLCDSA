@@ -1,0 +1,85 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.IO;
+
+namespace SwingWild
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            StreamReader sr = new StreamReader(@"D:\codejam\input.txt");
+            StreamWriter sw = new StreamWriter(@"D:\codejam\output.txt");
+
+            int[] l=new int[10005];
+            int[] d=new int[10005];
+            int[] most = new int[10005];
+
+            int T = Int32.Parse(sr.ReadLine());
+
+            for (int t = 0; t < T; t++)
+            {
+                int N = Int32.Parse(sr.ReadLine());
+
+                for (int n = 0; n < N; n++)
+                {
+                    String[] temp = sr.ReadLine().Split(' ');
+                    d[n] = Int32.Parse(temp[0]);
+                    l[n] = Int32.Parse(temp[1]);
+            
+                }
+
+              
+
+                int D = Int32.Parse(sr.ReadLine());
+
+
+                d[N] = D;
+                l[N] = D;
+
+                N++;
+
+                bool possible = isPossible(d,l,most,D,N);
+
+                if (possible)
+                    sw.WriteLine("Case #" + (t + 1) + ": YES");
+                else
+                    sw.WriteLine("Case #" + (t + 1) + ": NO");
+
+            }
+
+            sr.Close();
+            sw.Close();
+
+        }
+
+        public static bool isPossible(int[] d,int[] l,int[] most,int D,int N)
+        {
+            for (int i = 0; i < N; i++)
+                most[i] = -1;
+
+            most[0]=d[0];
+
+            for (int i = 0; i < N; i++)
+            {
+             
+
+                for (int j = i + 1; j < N; j++)
+                {
+                    if (d[j] > most[i] + d[i])
+                        break;
+
+                    int newlen = (d[j] - d[i]) < l[j] ? (d[j] - d[i]) : l[j];
+
+                    if (most[j] < newlen)
+                        most[j] = newlen;
+                }
+
+            }
+
+            return most[N - 1] != -1;
+        }
+    }
+}

@@ -1,0 +1,5 @@
+N, M, L = map(int, input().split())
+P, Q, R = map(int, input().split())
+Res = max((N//P)*(M//Q)*(L//R), (N//Q)*(M//R)*(L//P), (N//R)*(M//P)*(L//Q))
+Res2 = max((N//Q)*(M//P)*(L//R),(N//R)*(M//Q)*(L//P), (N//P)*(M//R)*(L//Q))
+print(max(Res, Res2))

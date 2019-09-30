@@ -1,0 +1,1 @@
+n,k,*t=map(int,open(0).read().split());print(([i for i in range(3,n)if sum(t[i-3:i])<k]+[-1])[0])

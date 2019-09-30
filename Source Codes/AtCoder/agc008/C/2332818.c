@@ -1,0 +1,25 @@
+#include<stdio.h>
+#include<stdlib.h>
+#define ll long long
+#define rep(i,l,r) for(ll i=(l);i<(r);i++)
+
+ll i,o,t,j,l,s,z;
+int main(){
+	scanf("%lld%lld%lld%lld%lld%lld%lld",&i,&o,&t,&j,&l,&s,&z);
+	//(o),(i,i),(l,l),(j,j),(j,i,l)?????????
+	if(i%2==j%2&&j%2==l%2){
+		//?????
+		printf("%lld\n",i+j+l+o);
+	}else if(i==0||j==0||l==0){
+		//????2????????????
+		printf("%lld\n",i/2*2+j/2*2+l/2*2+o);
+	}else{
+		//????????????????
+		//????(j,i,l)????????1???????????1???????
+		printf("%lld\n",i+j+l+o-1);
+	}
+	return 0;
+} ./Main.c: In function ‘main’:
+./Main.c:8:2: warning: ignoring return value of ‘scanf’, declared with attribute warn_unused_result [-Wunused-result]
+  scanf("%lld%lld%lld%lld%lld%lld%lld",&i,&o,&t,&j,&l,&s,&z);
+  ^

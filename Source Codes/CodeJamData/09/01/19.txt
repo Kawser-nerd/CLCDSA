@@ -1,0 +1,118 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.IO;
+
+
+namespace ConsoleApplication1
+{
+    public class NumberField 
+    {
+        public static string[] ch;
+       // public static string currentword = "";
+       public static  Dictionary<string, int> d = new Dictionary<string, int>();
+       public static int number = 0;
+       public static int chlength = 0;
+
+        public static void solve(int now, string currentword)
+        {
+
+
+            if (now == chlength)
+            {
+                if (d.ContainsKey(currentword)) number++;
+                return;
+            }
+
+           
+                
+                    for (int k = 0; k < ch[now].Length; k++)
+                    {
+                        string current = currentword;
+                        currentword = currentword + ch[now][k];
+                    now = now + 1;
+
+                        solve(now, currentword);
+                        now = now - 1;
+                        currentword = current;
+
+                    }
+                }
+                
+             
+       
+
+
+
+        public static void Main(string[] args)
+        {
+            int[][] word = new int[5010][];
+           
+
+            d.Clear();
+
+            for (int i = 0; i < 5010; i++)
+            {
+                word[i] = new int[20];
+            }
+
+            StreamReader sr = new StreamReader("test.txt");
+            string s = sr.ReadLine();
+
+             ch = s.Split(' ');
+            int L = int.Parse(ch[0]);
+            int D = int.Parse(ch[1]);
+            int N = int.Parse(ch[2]);
+            System.Console.WriteLine(L);
+            System.Console.WriteLine(D);
+            System.Console.WriteLine(N);
+            for (int i = 0; i < D; i++)
+            {
+                s = sr.ReadLine();
+                d.Add(s, 1);
+
+                for (int j = 0; j < L; j++)
+                {
+                    word[i][j] = s[j];
+                }
+            }
+
+            StreamWriter sw = new StreamWriter("result.txt");
+            for (int i = 0; i < N; i++)
+            {
+                ch = new string[100];
+                chlength = 0;
+
+                number = 0;
+                s = sr.ReadLine();
+                int num = 0;
+                for (int k = 0; k < s.Length; k++)
+                 {
+                  if (s[k] == '(') 
+                  {k = k + 1;
+                    string cc = "";
+                    while (s[k] != ')') { cc = cc + s[k]; k = k + 1; }
+                    
+                    ch[num] = cc;
+                    num++;
+                    chlength++;
+                   }
+                  else {
+                      ch[num] = s[k].ToString();
+                      num++;
+                      chlength++;
+                        }
+                }
+                solve(0,"");
+                sw.WriteLine("Case #" + (i+1).ToString() + ":" + " " + number);
+            }
+
+            sw.Close();
+            sr.Close();
+     
+    
+    }
+}
+
+}

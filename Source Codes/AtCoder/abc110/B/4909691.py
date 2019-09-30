@@ -1,0 +1,8 @@
+N, M, X, Y = map(int, input().split())
+x = list(map(int, input().split()))
+y = list(map(int, input().split()))
+x.append(X)
+x.sort()
+y.append(Y)
+y.sort()
+print('No War' if x[-1] < y[0] else 'War')

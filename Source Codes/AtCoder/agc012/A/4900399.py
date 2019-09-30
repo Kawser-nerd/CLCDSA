@@ -1,0 +1,1 @@
+n,a=open(0);print(sum(sorted(map(int,a.split()))[int(n)::2]))

@@ -1,0 +1,1 @@
+print(*["<"*(i[0]=="L")+">"*(i[0]=="R")+"A"*(i[0]=="A")for i in input().split()])

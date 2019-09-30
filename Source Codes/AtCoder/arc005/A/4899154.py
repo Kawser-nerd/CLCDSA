@@ -1,0 +1,1 @@
+_,w=open(0);print(w[:-2].lower().split().count('takahashikun'))

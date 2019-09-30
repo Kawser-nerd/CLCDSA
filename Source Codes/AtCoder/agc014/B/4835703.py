@@ -1,0 +1,1 @@
+from collections import*;print('YNEOS'[any(i%2for i in Counter(open(0).read().split()[2:]).values())::2])

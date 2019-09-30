@@ -1,0 +1,43 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <math.h>
+#include <algorithm>
+#define MAXN 5000000
+using namespace std;
+
+int a[110];
+
+int main() {
+    freopen("/Users/L/Downloads/A-small-attempt0.in.txt", "r", stdin);
+    freopen("/Users/L/Downloads/ans.txt", "w", stdout);
+    
+    int T;
+    scanf("%d", &T);
+    
+    for (int kase = 1; kase <= T; kase++) {
+        int s, n;
+        scanf("%d%d", &s, &n);
+        for (int i = 0; i < n; i++)
+            scanf("%d", &a[i]);
+        sort(a, a+n);
+        
+        int ans = n;
+        for (int k = 0; k <= n; k++) {
+            int ss = s;
+            for (int i = 0; i < k; i++) {
+                if (ss < MAXN) ss += ss-1;
+            }
+            
+            int tans = k;
+            for (int i = 0; i < n; i++)
+                if (a[i] < ss) ss+= a[i];
+                else tans++;
+            
+            ans = min(ans, tans);
+        }
+        
+        printf("Case #%d: %d\n", kase, ans);
+    }
+    return 0;
+}

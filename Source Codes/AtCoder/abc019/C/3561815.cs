@@ -1,0 +1,1 @@
+using System;using System.Linq;public class P{public static void Main(){Console.ReadLine();Console.WriteLine(Console.ReadLine().Split().Select(x=>{int n=int.Parse(x);while(n%2==0)n/=2;return n;}).Distinct().Count());}}

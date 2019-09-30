@@ -1,0 +1,44 @@
+#include<stdio.h>
+
+int min(int a, int b){return a>b?b:a;}
+void nextInt(int *f);
+void nextShort(short *f);
+
+int N, M, i, j;
+int L[100000], R[100000];
+short S[100000];
+int P[100002];
+int sum, ans;
+
+int main(){
+	nextInt(&N);
+	nextInt(&M);
+	for(i=N-1; i>=0; --i){
+		nextInt(&L[i]);
+		nextInt(&R[i]);
+		nextShort(&S[i]);
+		sum += S[i];
+		P[L[i]] += S[i];
+		P[R[i]+1] -= S[i];
+	}
+	ans = 2147483647;
+	for(j=1; j<=M; j++){
+		P[j+1] += P[j];
+		ans = min(ans, P[j]);
+	}
+	printf("%d\n", sum-ans);
+}
+
+void nextInt(int *f){
+	*f=0; char c=getchar();
+	while((c<'0')||('9'<c)){c=getchar();}
+	while((c>='0')&&(c<='9')){*f=*f*10+(c-'0'); c=getchar();}
+	return;
+}
+
+void nextShort(short *f){
+	*f=0; char c=getchar();
+	while((c<'0')||('9'<c)){c=getchar();}
+	while((c>='0')&&(c<='9')){*f=*f*10+(c-'0'); c=getchar();}
+	return;
+}

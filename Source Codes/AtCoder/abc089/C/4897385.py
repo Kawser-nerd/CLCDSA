@@ -1,0 +1,1 @@
+from itertools import*;s,*_=zip(*open(0));print(sum(p*q*r for p,q,r in combinations(map(s.count,'MARCH'),3)))

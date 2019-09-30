@@ -1,0 +1,72 @@
+#include<stdio.h>
+#include<string.h>
+#define P printf("i=%d sp=%d ",i,sp);for(k=0;k<=sp;k++) printf("%c",final[k]); printf("\n");
+void print(char s[],int n);
+int main()
+{
+	int t,c,d,i,n,j,k,cse=0,sp,a[26],cd;
+	char el,pel,com[26][26],final[200],s[110],opp[26][26];
+	//a[16]=0;a[22]=1;a[4]=2;a[17]=3;a[0]=a[4];a[18]=5;a[3]=6;a[5]=7;
+	scanf("%d",&t);
+	while(t--) {
+		cse++;
+		sp=-1;
+		memset(com,0,sizeof com);
+		memset(opp,0,sizeof opp);
+		scanf("%d",&c);
+		for(i=0;i<c;i++) {
+			scanf("%s",s);
+			com[s[0]-'A'][s[1]-'A']=s[2];
+			com[s[1]-'A'][s[0]-'A']=s[2];
+			}
+		scanf("%d",&d);
+		for(i=0;i<d;i++) {
+			scanf("%s",s);
+			el=s[0]-'A';
+			pel=s[1]-'A';
+			opp[el][pel]=1;
+			opp[pel][el]=1;
+			}
+		scanf("%d",&n);
+		scanf("%s",s);
+		final[++sp]=s[0];
+		for(i=1;i<n;i++) {
+			//P
+			el=s[i]-'A';cd=0;
+			if(sp>=0) {
+				pel=final[sp]-'A';
+				if(com[el][pel]!=0) {
+					final[sp]=com[el][pel];
+					cd=1;
+					}
+				else {
+					for(j=0;j<=sp;j++) {
+						if(opp[final[j]-'A'][el]==1) {
+							sp=-1;
+							cd=1;
+							break;
+							}
+						}
+					}
+				if(cd==0) final[++sp]=s[i]; 
+				}
+			else 
+				final[++sp]=s[i];
+			//P printf("\n");
+			}
+		printf("Case #%d: ",cse);
+		print(final,sp);
+		}
+	return 0;
+}
+
+void print(char s[],int n)
+{
+	int i;
+	if(n<0){ printf("[]\n"); return; }
+	printf("[%c",s[0]);
+	for(i=1;i<=n;i++)
+		printf(", %c",s[i]);
+	printf("]\n");
+}
+	

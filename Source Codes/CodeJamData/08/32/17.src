@@ -1,0 +1,88 @@
+#include <stdio.h>
+
+
+#define SEPARATOR                       ' '
+#define LINEBUF_SIZE            (1024 * 1024)
+
+static int isUgly(long long num) {
+        if ( num % 2 == 0
+                 || num % 3 == 0
+                 || num % 5 == 0
+                 || num % 7 == 0 ) {
+                //printf( "isUgly(%lld) = 1\n", num );
+                return 1;
+        }
+        //printf( "isUgly(%lld) = 0\n", num );
+        return 0;
+}
+
+int solve2(long long prevnum, char *numstr) {
+        int             len;
+        long long               myNum = 0;
+        int             numUgly = 0;
+        int             i;
+        //printf( "solve2( %d, %s )\n", prevnum, numstr );
+
+        len = strlen( numstr );
+        if ( len == 0 ) {
+                return isUgly( prevnum );
+        }
+
+        for ( i=0; i<len; ++i ) {
+                myNum *= 10;
+                myNum += (numstr[i] - '0');
+                numUgly += solve2( prevnum + myNum, numstr + i + 1 );
+                numUgly += solve2( prevnum - myNum, numstr + i + 1);
+        }
+
+        return numUgly;
+}
+int solve(char *numstr) {
+        int             len;
+        long long               myNum = 0;
+        int             numUgly = 0;
+        int             i;
+        //printf( "solve( %d, %s )\n", prevnum, numstr );
+
+        len = strlen( numstr );
+
+        for ( i=0; i<len; ++i ) {
+                myNum *= 10;
+                myNum += (numstr[i] - '0');
+                numUgly += solve2( myNum, numstr + i + 1 );
+        }
+
+        return numUgly;
+}
+
+int main(int argc, char **argv) {
+        FILE    *f;
+        char    linebuf[LINEBUF_SIZE];
+        int             totalnum = 0;
+        int             casenum = 1;
+        int             l;
+        //unsigned char k;
+
+        if ( argc < 2 ) {
+                printf( "Usage: unum inputfile\n" );
+                return 1;
+        }
+
+        f = fopen( argv[1], "r" );
+        if ( fgets( linebuf, LINEBUF_SIZE, f ) == NULL ) {
+                printf( "Error: invalid input file\n" );
+                return 1;
+        };
+
+        totalnum = atoi( linebuf ) + 1;
+        while ( fgets( linebuf, LINEBUF_SIZE, f ) != NULL && casenum < totalnum ) {
+                l = strlen(linebuf);
+                if ( linebuf[l-1] == '\n' ) linebuf[l-1] = '\0';
+                printf( "Case #%d: %d\n", casenum, solve( linebuf ) );
+                ++casenum;
+        }
+
+        fclose( f );
+
+        return 0;
+}

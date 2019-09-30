@@ -1,0 +1,1 @@
+n=int(input());print(['GBoaodd'[n<=59::2],['Great','Perfect'][n==100]][n>89])

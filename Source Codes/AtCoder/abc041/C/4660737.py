@@ -1,0 +1,1 @@
+for v,i in sorted([-int(v),i]for i,v in enumerate(open(0).read().split()[1:])):print(i+1)

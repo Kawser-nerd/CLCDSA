@@ -1,0 +1,1 @@
+import java.util.*;public class Main {public static void main(String[] a) {Scanner s = new Scanner(System.in);int H = s.nextInt();int W = s.nextInt();int h = s.nextInt();System.out.println(H*W-h*W-(H-h)*s.nextInt());}}

@@ -1,0 +1,46 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace GCJ
+{
+    public static class Round1A
+    {
+        static string input = null;
+        static string output = null;
+        static string[] vals = null;
+
+        public static void ProblemA()
+        {
+            input = Console.ReadLine();
+
+            int T = Convert.ToInt32(input);
+
+            for (int t = 1; t <= T; ++t)
+            {
+                input = Console.ReadLine();
+                vals = input.Split(' ');
+                int A = Convert.ToInt32(vals[0]);
+                int B = Convert.ToInt32(vals[1]);
+
+                decimal[] P = new decimal[A];
+
+                input = Console.ReadLine();
+                vals = input.Split(' ');
+                for (int i = 0; i < vals.Length; ++i) P[i] = Convert.ToDecimal(vals[i]);
+
+                decimal ans = 2 + B;
+                decimal prob = 1;
+                for (int i = 0; i <= A; ++i)
+                {
+                    ans = Math.Min(ans, (A - i + B - i + 1) + (B + 1) * (1 - prob));
+                    if(i < A) prob = prob * P[i];
+                }
+
+                output = String.Format("Case #{0}: {1}", t, ans);
+                Console.WriteLine(output);
+            }
+        }
+    }
+}

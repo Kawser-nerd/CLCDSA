@@ -1,0 +1,1 @@
+s,t=map(open(0).read().count,'RB');print(['DAROAKWI'[s<t::2],'TAKAHASHI'][s>t])

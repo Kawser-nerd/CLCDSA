@@ -1,0 +1,1 @@
+a=list(map(int,input().split()));c,d=sorted(a);print(-~c*d)

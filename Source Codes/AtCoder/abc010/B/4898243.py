@@ -1,0 +1,1 @@
+_,a=open(0);print(sum(int('301012'[int(i)%6])for i in a.split()))

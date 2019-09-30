@@ -1,0 +1,64 @@
+#include<bits/stdc++.h>
+#define pb push_back
+#define mp make_pair
+#define f first
+#define maxn 100100
+#define s second
+#define ll long long int
+#define inf 1000000014
+#define infl (ll)(1e18+1)
+#define mod 1000000007
+#define sz(x) (int) x.size()
+#define trace1(x)  cerr << #x << ": " << x << endl;
+#define trace2(x, y)  cerr << #x << ": " << x << " | " << #y << ": " << y << endl;
+using namespace  std;
+string ss[2][20];
+int main(int argc, char const *argv[])
+{
+    freopen("input.txt","r",stdin);
+    freopen("output.txt","w",stdout);
+   int test;
+   cin>>test;
+   for (int cas = 1;cas<=test; ++cas)
+   {
+    int n;
+    cin>>n;
+    for (int i = 0; i < n; ++i)
+    {
+        cin>>ss[0][i]>>ss[1][i];
+    }
+    int arr[20];
+    int ans=0;
+    for(int i=0;i<1<<n;i++)
+    {int cnt=0;
+        for(int j=0;j<20;j++){arr[j]=0;}
+        for(int j=0;j<n;j++)
+        {
+            if(i&(1<<j))
+            {
+                arr[j]=1;
+            }
+        }
+       for(int j=0;j<n;j++)
+        {int c1,c2;c1=c2=0;
+        if(arr[j]==0){ // copied
+            for(int k=0;k<n;k++)
+            {
+                 if(arr[k]==1)//notcopied
+                 {
+                    if(ss[0][j]==ss[0][k])
+                        c1=1;
+                    if(ss[1][j]==ss[1][k])
+                        c2=1;
+                 }
+            }
+        }
+        if(c1==1&&c2==1)++cnt;
+   }
+   ans = max(ans,cnt);
+
+}
+printf("Case #%d: %d\n",cas,ans);
+   }
+return 0;
+}

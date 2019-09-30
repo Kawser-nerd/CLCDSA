@@ -1,0 +1,1 @@
+h,m=map(int,input().split());print(1080-h*60-m)

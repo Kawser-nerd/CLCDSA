@@ -1,0 +1,1 @@
+print(7+10**int(input()))

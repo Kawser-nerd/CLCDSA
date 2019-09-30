@@ -1,0 +1,106 @@
+#include<stdio.h>
+int n;
+long double m,a[1000001],b[1000001],temp;
+ 
+int f(long double mid)
+{
+        int i;
+ 
+    
+                b[1]=a[1]-mid;
+ 
+       
+        for(i=2;i<=n;i++)
+ 
+        {
+                temp=a[i]-b[i-1];
+ 
+                if(temp>=m)
+                {
+                        if(temp-m>mid)
+ 
+                                b[i]=a[i]-mid;
+ 
+                        else
+                                b[i]=b[i-1]+m;
+ 
+                }
+                else
+                {
+                        if(m-temp>mid)
+ 
+                        {
+                                return 0;
+                        }
+ 
+                        else
+                                b[i]=b[i-1]+m;
+ 
+                }
+        }
+        return 1;
+}
+ 
+int main()
+ 
+{
+        int t,count=0,cur,c,i,fuck,j,b1;
+ 
+        long double low,mid,high;
+        scanf("%d",&t);
+ 
+        cur=1;
+        count=0;
+        while(t--)
+ 
+        {
+                scanf("%d%Lf",&c,&m);
+cur=1;
+                for(i=0;i<c;i++)
+ 
+                {
+                        scanf("%d%d",&fuck,&b1);
+ 
+                        for(j=0;j<b1;j++)
+ 
+                        {
+                                a[cur++]=(long double)fuck;
+ 
+                        }
+                     
+                }
+                n=cur-1;
+ 
+                low=0.0;
+                high=1000000;
+                while(high-low>0.0000001)
+ 
+                {
+                        mid=(high+low)/2;
+ 
+                        if(f(mid)==1)
+                        {
+ 
+                                if(high==mid)
+                                        break;
+ 
+                                high=mid;
+                        }
+                        else
+                        {
+ 
+                                if(low==mid+0.000001)
+                                        break;
+ 
+                                low=mid+0.000001;
+                        }
+                }
+ 
+                mid=(high+low)/2;
+                count+=1;
+ 
+                printf("Case #%d: %Lf\n",count,mid);
+ 
+        }
+        return 0;
+}

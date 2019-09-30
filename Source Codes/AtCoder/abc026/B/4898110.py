@@ -1,0 +1,1 @@
+_,*t=open(0);r=sorted(int(i)**2for i in t);print((sum(r[::-2])-sum(r[-2::-2]))*355/113)

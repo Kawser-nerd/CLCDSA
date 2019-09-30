@@ -1,0 +1,1 @@
+I=input;I();s,t=I(),I();print(-(len(set(s)-set(t))>0)or-min(-s.count(c)//t.count(c)for c in s))

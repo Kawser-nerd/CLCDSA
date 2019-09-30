@@ -1,0 +1,1 @@
+q,h,s,d,n=map(int,open(0).read().split());m=min(4*q,2*h,s);print(n//2*min(d,2*m)+n%2*m)

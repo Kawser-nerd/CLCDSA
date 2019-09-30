@@ -1,0 +1,1 @@
+print("YES") if input() in ("5 7 5","5 5 7","7 5 5") else print("NO")

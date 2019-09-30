@@ -1,0 +1,1 @@
+from scipy.sparse import*;f=lambda*z:map(int,input().split());n,=f();g,h=csgraph.dijkstra(csr_matrix(([1]*~-n,list(zip(*map(f,[0]*~-n)))),[n+1]*2),0,[1,n]);print('FSennunkeec'[sum(g[i]>h[i]for i in range(n+1))*2>=n::2])

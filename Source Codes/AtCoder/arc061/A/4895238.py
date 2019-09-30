@@ -1,0 +1,1 @@
+print((lambda S:sum(eval(''.join(''.join(i)for i in zip(S,(['','+'][int(i)]for i in'{:0>{}b}0'.format(i,len(S)-1)))))for i in range(1<<len(S)-1)))(input()))

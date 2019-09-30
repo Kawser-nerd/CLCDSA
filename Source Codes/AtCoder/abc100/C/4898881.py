@@ -1,0 +1,1 @@
+_,a=open(0);print(sum(bin(int(x))[::-1].index('1')for x in a.split()))

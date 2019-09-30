@@ -1,0 +1,7 @@
+long a,b,c,d,M=1e9+7,w[1001],e[1001],P[1001][1001],n,i,j;int p(long a,int b){return b?b%2?p(a*a%M,b/2)*a%M:p(a*a%M,b/2)%M:1;}main(k){scanf("%d%d%d%d%d",&n,&a,&b,&c,&d);for(*w=*e=j=1;j<=n;)e[j]=e[j-1]*j++%M;for(;i++<n;)for(j=i;~j;)P[i][j]=e[i]*p(e[i-j--],M-2)%M;for(;i--;)e[i]=p(e[i],M-2);for(i=a-1;i++<b;)for(j=n;~j;j--)for(k=c;k<=d&&k<=j/i;)w[j]=(w[j]+w[j-i*k]*P[n-j+i*k][i*k]%M*p(e[i],k)%M*e[k++]%M)%M;printf("%d\n",w[n]);} ./Main.c:1:126: warning: return type defaults to ‘int’ [-Wimplicit-int]
+ long a,b,c,d,M=1e9+7,w[1001],e[1001],P[1001][1001],n,i,j;int p(long a,int b){return b?b%2?p(a*a%M,b/2)*a%M:p(a*a%M,b/2)%M:1;}main(k){scanf("%d%d%d%d%d",&n,&a,&b,&c,&d);for(*w=*e=j=1;j<=n;)e[j]=e[j-1]*j++%M;for(;i++<n;)for(j=i;~j;)P[i][j]=e[i]*p(e[i-j--],M-2)%M;for(;i--;)e[i]=p(e[i],M-2);for(i=a-1;i++<b;)for(j=n;~j;j--)for(k=c;k<=d&&k<=j/i;)w[j]=(w[j]+w[j-i*k]*P[n-j+i*k][i*k]%M*p(e[i],k)%M*e[k++]%M)%M;printf("%d\n",w[n]);}
+                                                                                                                              ^
+./Main.c: In function ‘main’:
+./Main.c:1:126: warning: type of ‘k’ defaults to ‘int’ [-Wimplicit-int]
+./Main.c:1:134: warning: implicit declaration of function ‘scanf’ [-Wimplicit-function-declaration]
+ long a,b,c,d,M=1e9+7,w[1001],e[1001],P[1001][1001],n,i,j;int p(long a,int b){return b?b%2?p(a*a%M,b/2)*a%M:p(a*a%M,b/2)%M:1;}main(k){scanf("%d%d%d%d%d",&n,&a,&b,&c,&d);for(*w=*e=j=1;j<=n;)e[j]=e...

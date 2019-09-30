@@ -1,0 +1,59 @@
+#include<stdio.h>
+int main(){
+  int T,i,j,t,N,ans;
+  int d[108],n[108],w[108],e[108],s[108],deltad[108],deltap[108],deltas[108];
+  scanf("%d",&T);
+  int attack_count[108],attacker,near_day;
+  int wall[1000];
+  for(t=1;t<=T;t++){
+    scanf("%d",&N);
+    for(i=0;i<N;i++){
+      scanf("%d %d %d %d %d %d %d %d",&d[i],&n[i],&w[i],&e[i],&s[i],&deltad[i],&deltap[i],&deltas[i]);
+      attack_count[i] = 0;
+    }
+
+    for(i=0;i<1000;i++) wall[i] = 0;
+    ans = 0;
+
+    do{
+    near_day = 1000000000;
+    for(i=0;i<N;i++){
+      if((attack_count[i] < n[i]) && near_day > (attack_count[i]*deltad[i] + d[i])){
+        near_day = attack_count[i]*deltad[i] + d[i];
+      }
+    }
+
+    int left,right;
+    for(i=0;i<N;i++)
+      if((attack_count[i] < n[i]) && near_day == (attack_count[i]*deltad[i] + d[i])){
+          left = w[i]+attack_count[i]*deltap[i];
+          right = e[i]+attack_count[i]*deltap[i];
+          int defended = 1;
+          for(j=left;j<right;j++){
+            if(wall[500 + j] < (s[i] + deltas[i]*attack_count[i])){
+              defended = 0;
+              break;
+            }
+          }
+          if(defended == 0){
+            //printf("day = %d,attacker = %d\n",near_day,i);
+            ans++;
+          }
+      }
+
+    for(i=0;i<N;i++){
+      if((attack_count[i] < n[i]) && near_day == (attack_count[i]*deltad[i] + d[i])){
+        left = w[i]+attack_count[i]*deltap[i];
+        right = e[i]+attack_count[i]*deltap[i];
+        for(j=left;j<right;j++)
+          if(wall[500 + j] < (s[i] + deltas[i]*attack_count[i]))
+            wall[500 + j] = s[i] + deltas[i]*attack_count[i];
+        attack_count[i]++;
+      }
+    }
+    }while(near_day!=1000000000);
+
+    printf("Case #%d: %d\n",t,ans);
+  }
+  return 0;
+}

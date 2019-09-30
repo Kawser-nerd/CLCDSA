@@ -1,0 +1,89 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <algorithm>
+using namespace std;
+
+#define INF 1000000000
+#define MAXN 110
+int G[MAXN][MAXN];
+
+char buf[MAXN];
+
+double WP[MAXN];
+double OWP[MAXN];
+double OOWP[MAXN];
+int WPN[MAXN];
+int OPN[MAXN];
+double RPI[MAXN];
+int main()
+{
+	//freopen("in.txt","r",stdin);
+	int t;
+	scanf("%d",&t);
+	int ct=1;
+	while(t--)
+	{
+		int n;
+		scanf("%d",&n);
+		for(int i=0;i<n;i++)
+		{
+			scanf("%s",buf);
+			int cnt=0,wn=0;;
+			for(int j=0;j<n;j++)
+			{
+				if(buf[j]=='.')
+					G[i][j]=INF;
+				else 
+				{
+					cnt++;
+					if(buf[j]=='0')
+						G[i][j]=0;
+					else
+					{
+						G[i][j]=1;
+						wn++;
+					}
+				}
+			}
+			OPN[i]=cnt;
+			WPN[i]=wn;
+			WP[i]=(double)wn/(double)cnt;
+		}
+
+		for(int i=0;i<n;i++)
+		{
+			double sum=0;
+			for(int j=0;j<n;j++)
+			{
+				if(G[i][j]!=INF)
+				{
+					sum+=(double)(WPN[j]-G[j][i])/(double)(OPN[j]-1);
+				}
+			}
+			OWP[i]=sum/(double)OPN[i];
+		}
+
+		for(int i=0;i<n;i++)
+		{
+			double sum=0;
+			for(int j=0;j<n;j++)
+			{
+				if(G[i][j]!=INF)
+					sum+=OWP[j];
+			}
+			OOWP[i]=sum/(double)OPN[i];
+		}
+		
+		for(int i=0;i<n;i++)
+		{
+			RPI[i]=0.25*WP[i]+0.5*OWP[i]+0.25*OOWP[i];
+		}
+		printf("Case #%d:\n",ct++);
+		for(int i=0;i<n;i++)
+		{
+			printf("%.7f\n",RPI[i]);
+		}
+	}
+	return 0;
+}

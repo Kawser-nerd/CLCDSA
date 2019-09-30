@@ -1,0 +1,75 @@
+#include <cstdio>
+#include <cstring>
+
+#define MAX 12
+#define POW2(a) ((1) << (a))
+#define BIT(a, b) (((a) >> (b)) & (1))
+
+void input(void);
+void solve(void);
+
+int DP(int r, int c, int set);
+
+int set_bit(int set, int pos, int x);
+
+int  n, m;
+char G[MAX][MAX];
+int  F[MAX][MAX][POW2(MAX)];
+int  case_cnt = 1;
+
+int main(void)
+{
+  int t;
+  scanf("%d", &t);
+  while(t--) {
+    input();
+    solve();
+  }
+    
+  return 0;
+}
+
+void input(void)
+{
+  scanf("%d %d", &n, &m);
+  for(int i = 0; i < n; i++) scanf(" %s", &G[i][0]);
+}
+
+void solve(void)
+{
+  memset(F, -1, sizeof(F));
+  printf("Case #%d: %d\n", case_cnt++, DP(0, 0, 0));
+}
+
+int DP(int r, int c, int set)
+{
+  if(c == m)             return DP(r + 1, 0, set_bit(set, m, 0));
+  if(r == n)             return 0;
+  if(F[r][c][set] != -1) return F[r][c][set];
+  
+  int best = 0;
+  
+  if(G[r][c] == 'x') {
+    best = DP(r, c + 1, set_bit(set_bit(set, m, BIT(set, c)), c, 0));
+  }
+  else {
+    best = DP(r, c + 1, set_bit(set_bit(set, m, BIT(set, c)), c, 0));
+    if((c == 0 || BIT(set, c - 1) == 0) && 
+       (c == 0 || BIT(set, m) == 0)     &&
+       (c + 1 == m || BIT(set, c + 1) == 0)) {
+      int z = 1 + DP(r, c + 1, set_bit(set_bit(set, m, BIT(set, c)), c, 1));
+      if(z > best) best = z;
+    }
+  }
+  
+  return F[r][c][set] = best;
+} 
+
+int set_bit(int set, int pos, int x)
+{
+  if(BIT(set, pos)) set -= POW2(pos);
+  return set + x * POW2(pos);
+}
+
+
+

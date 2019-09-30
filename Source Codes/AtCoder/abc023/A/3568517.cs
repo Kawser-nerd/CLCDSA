@@ -1,0 +1,1 @@
+using System;public class P{public static void Main(){int a=0,b=int.Parse(Console.ReadLine());while(b!=0){a+=b%10;b/=10;}Console.WriteLine(a);}}

@@ -1,0 +1,24 @@
+#include<stdio.h>
+int main()
+{
+	int t,n,min,i,cse=0,e,x,sum;
+	scanf("%d",&t);
+	while(t--) {
+		cse++;
+		scanf("%d",&n);
+		scanf("%d",&x);
+		min=x;
+		sum=x;
+		for(i=1;i<n;i++) {
+			scanf("%d",&e);
+			x^=e;
+			sum+=e;
+			if(e<min) min=e;
+			}
+		if(x==0)
+			printf("Case #%d: %d\n",cse,sum-min);
+		else
+			printf("Case #%d: NO\n",cse);
+		}
+	return 0;
+}

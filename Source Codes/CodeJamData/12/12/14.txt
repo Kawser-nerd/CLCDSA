@@ -1,0 +1,97 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace GCJ
+{
+    public static class Round1A
+    {
+        static string input = null;
+        static string output = null;
+        static string[] vals = null;
+
+        public static void ProblemB()
+        {
+            input = Console.ReadLine();
+
+            int T = Convert.ToInt32(input);
+
+            for (int t = 1; t <= T; ++t)
+            {
+                input = Console.ReadLine();
+                int N = Convert.ToInt32(input);
+                int[] a = new int[N];
+                int[] b = new int[N];
+                int[] x = new int[N];
+
+                for (int i = 0; i < N; ++i)
+                {
+                    input = Console.ReadLine();
+                    vals = input.Split(' ');
+                    a[i] = Convert.ToInt32(vals[0]);
+                    b[i] = Convert.ToInt32(vals[1]);
+                    x[i] = 0;
+                }
+
+                int stars = 0;
+                int moves = 0;
+                while (stars < 2 * N)
+                {
+                    int pos = -1;
+                    int max_second = int.MinValue;
+                    for (int i = 0; i < N; ++i)
+                    {
+                        if (x[i] == 0)
+                        {
+                            if (stars >= b[i])
+                            {
+                                pos = i;
+                                max_second = int.MaxValue;
+                                break;
+                            }
+                            else if (stars >= a[i])
+                            {
+                                if (b[i] > max_second)
+                                {
+                                    pos = i;
+                                    max_second = b[i];
+                                }
+                            }
+                        }
+                        else if (x[i] == 1 && stars >= b[i])
+                        {
+                            pos = i;
+                            max_second = int.MaxValue - 1;
+                        }
+                    }
+                    if (max_second == int.MaxValue)
+                    {
+                        moves += 1;
+                        x[pos] += 2;
+                        stars += 2;
+                    }
+                    else if (pos != -1)
+                    {
+                        moves += 1;
+                        x[pos] += 1;
+                        stars += 1;
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+                if (stars == 2 * N)
+                {
+                    output = String.Format("Case #{0}: {1}", t, moves);
+                }
+                else
+                {
+                    output = String.Format("Case #{0}: {1}", t, "Too Bad");
+                }
+                Console.WriteLine(output);
+            }
+        }
+    }
+}

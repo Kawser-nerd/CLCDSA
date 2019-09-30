@@ -1,0 +1,12 @@
+s=int(input())
+ss=s//10
+s=s%10
+m=ss//6
+ss=ss%6
+mm=m//10
+m=m%10
+h=mm//6
+mm=mm%6
+hh=h//10
+h=h%10
+print(str(hh)+str(h)+":"+str(mm)+str(m)+":"+str(ss)+str(s))

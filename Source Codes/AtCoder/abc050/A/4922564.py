@@ -1,0 +1,9 @@
+s = input().split() #s_1 s_2?????????s??????
+a = int(s[0])
+b = int(s[2])
+if s[1] == '+':
+  p = a + b
+  print(p);
+else:
+  q = a - b
+  print(q)

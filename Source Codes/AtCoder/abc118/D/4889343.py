@@ -1,0 +1,144 @@
+import math
+
+n,m = [int(i) for i in input().split()]
+a = [int(i) for i in input().split()]
+
+#?????????????????????????
+set = [[1,2],[7,3],[4,4],[5,5],[3,5],[2,5],[9,6],[6,6],[8,7]]
+
+#????????????????????
+if 2 in a:
+  if 3 in a or 5 in a:
+    a.remove(2)
+    m -= 1
+
+if 3 in a:
+  if 5 in a:
+    a.remove(3)
+    m -= 1
+  
+if 6 in a:
+  if 9 in a:
+    a.remove(6)
+    m -= 1
+
+#????????????????a??????????????
+exist_set = [i for i in set if i[0] in a]
+
+#????????????
+max_honsu = max([i[1] for i in exist_set])
+
+#???exist_set??num????????????????
+m -= 1
+
+#??????????????
+max_keta = 0
+ans_kouho = []
+
+for exist_one in exist_set:
+  keta_tmp = n//exist_one[1]
+  num_tmp = exist_one[0]
+  amari_tmp = n % exist_one[1]
+  honsu_tmp = exist_one[1]
+  
+  ###print(keta_tmp,num_tmp)
+  
+  #???0??????a??????????????????????
+  if amari_tmp != 0 and honsu_tmp == max_honsu:
+    continue
+  if keta_tmp >= max_keta:
+    keta = keta_tmp
+    num = num_tmp
+    amari = amari_tmp
+    honsu = honsu_tmp
+
+    #??0???????????
+    if amari == 0:
+      ans_kouho.append(int(str(num)*keta))
+      max_keta = keta
+      continue
+      
+    #???????
+
+    #????????num?????exist_set??num???
+    exist_yet = [inc for inc in exist_set if inc[0] != num]
+
+    #1?????????????0???????
+    for keta_num in range(1,min(max_honsu,keta+1)):
+      
+      kouho = []
+
+      #bit???
+      #???????????
+      bit = math.ceil(math.log2(m+1))
+      for all_bit in range((2**m)*keta_num):
+        change = []
+        nokori = amari + honsu * keta_num
+        for bit_conf in range(keta_num):
+          bit_index =  (all_bit >> bit_conf*bit) & (2**m-1)
+
+          #bit_index?0~m???m+1?????
+          if bit_index > m:
+            break
+            
+          #????????
+          if bit_index == m:
+            change.append(0)
+            continue
+
+          #bit_index??????????????????
+          change.append(exist_yet[bit_index][0])
+          nokori -= exist_yet[bit_index][1]
+
+          if nokori < 0:
+            break
+            
+        if bit_index > m or nokori < 0:
+          continue
+
+        #???0????????????????????????
+        if nokori == 0:
+          kouho.append(change)
+      
+      #????????????????
+      if len(kouho) != 0:
+
+        #keta-del_len?num??
+        del_len = len(kouho[0])
+
+        #0???
+        kouho = [[inc_1 for inc_1 in inc_2 if inc_1 != 0] for inc_2 in kouho]
+
+        #0?????????????
+        max_len = max([len(inc) for inc in kouho])
+        kouho = [inc for inc in kouho if len(inc) == max_len]
+        
+        max_keta = keta - del_len + max_len
+
+        #??????????
+        kouho = [sorted(kouho_one,reverse=True) for kouho_one in kouho]
+
+        #?????????
+        kouho_tmp = []
+        for kouho_one in kouho:
+          if kouho_one not in kouho_tmp:
+            kouho_tmp.append(kouho_one)
+        kouho = kouho_tmp
+
+        #???????
+        if len(kouho) != 1:
+          for kouho_one in range(len(kouho[0])):
+            max_i = max([inc[kouho_one] for inc in kouho])
+            kouho = [inc for inc in kouho if inc[kouho_one] == max_i]
+        kouho = kouho[0]
+
+        ans = [num]*(keta-del_len) + kouho
+        ans.sort(reverse=True)
+        ans_str = ''
+        for ans_one in ans:
+          ans_str += str(ans_one)
+        ans_kouho.append(int(ans_str))
+
+ans_kouho.sort()
+###print(ans_kouho)
+print(ans_kouho[-1])

@@ -1,0 +1,49 @@
+#include <stdio.h>
+int pow(int a,int b)
+{
+	int i,j,k;
+	int res=1;
+	for(i=0;i<b;i++)
+	{
+		res*=a;
+	}
+	return res;
+}
+int cal1(int l,int c,int p)
+{
+	int i,j,k;
+	int res=l;
+	for(i=0;;i++)
+	{
+		if(res>=p) return i;
+		res*=c;
+	}
+}
+int cal2(int x)
+{
+	int i,j,k;
+	int res=1;
+	for(i=0;;i++)
+	{
+		if(res>=x) return i;
+		res*=2;
+	}
+	
+}
+int main()
+{
+	int l,p,c;
+	int i,j,k;
+	int cas;
+	freopen("e:\\3.txt","r",stdin);
+	freopen("e:\\4.txt","w",stdout);
+	scanf("%d",&cas);
+	for(int x=1;x<=cas;x++)
+	{
+		scanf("%d%d%d",&l,&p,&c);
+		int a=cal1(l,c,p);
+		int b=cal2(a);
+		printf("Case #%d: %d\n",x,b);
+	}
+	return 0;
+}

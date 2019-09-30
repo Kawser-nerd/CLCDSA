@@ -1,0 +1,24 @@
+using System.Linq;
+using System;
+
+public class Hello
+{
+    public static void Main()
+    {
+        var n = int.Parse(Console.ReadLine().Trim());
+        string[] line = Console.ReadLine().Trim().Split(' ');
+        var a = Array.ConvertAll(line, int.Parse);
+        var psum = a.Sum();
+        var pave = 0;
+        if (psum % n != 0) { Console.WriteLine(-1); goto end; }
+        else pave = psum / n;
+        var pc = 0; var bc = 0;
+        for (int i = 0; i < n; i++)
+        {
+            pc += a[i];
+            if (pc % (i + 1) != 0  | pc != pave * (i + 1)) bc++;
+        }
+        Console.WriteLine(bc);
+        end:;
+    }
+}

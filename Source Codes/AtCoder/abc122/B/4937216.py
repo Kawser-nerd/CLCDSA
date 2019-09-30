@@ -1,0 +1,1 @@
+print(len(max("".join(str(int(c in{"A","T","G","C"}))for c in input()).split("0"))))

@@ -1,0 +1,1 @@
+print('Red'if int(input())%2else'Blue')

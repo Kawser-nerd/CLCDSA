@@ -1,0 +1,1 @@
+print((lambda n, lis: sum([len(list(filter(lambda x: x == c, lis))) % 2 for c in ['R', 'G', 'B']]))(input(), input()))

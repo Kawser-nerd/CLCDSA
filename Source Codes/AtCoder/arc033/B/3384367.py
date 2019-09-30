@@ -1,0 +1,1 @@
+i=lambda:set(input().split());i();a,b=i(),i();print(len(a&b)/len(a|b))

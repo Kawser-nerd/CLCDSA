@@ -1,0 +1,1 @@
+print(int("SaFrThWeTuMo".find(input()[:2])/2))

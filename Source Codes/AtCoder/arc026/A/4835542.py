@@ -1,0 +1,1 @@
+n,a,b=map(int,input().split());print(max(5*b+(n-5)*a,n*b))

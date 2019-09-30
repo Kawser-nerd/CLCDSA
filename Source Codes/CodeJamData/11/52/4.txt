@@ -1,0 +1,91 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <algorithm>
+#include <queue>
+#include <vector>
+using namespace std;
+
+#define MAXN 30
+typedef long long llint;
+
+int N;
+
+int G[MAXN][MAXN];
+
+int arr[MAXN];
+int cnt[MAXN];
+int tag[MAXN];
+int tCnt;
+int ans;
+void Search(int v,int s)
+{
+	cnt[s]++;
+	tag[v]=s;
+	tCnt++;
+	if(tCnt!=N)
+	{
+		bool flag=false;
+		for(int i=0;i<N;i++)
+		{
+			if(G[v][i]&&tag[i]==-1)
+			{
+				flag=true;
+				Search(i,s);
+			}
+		}
+		if(!flag)
+		{
+			for(int i=0;i<N;i++)
+			{
+				if(tag[i]==-1)
+					Search(i,s+1);
+			}
+		}
+	}
+	else
+	{
+		int tAns=20;
+		for(int i=0;i<N;i++)
+		{
+			if(cnt[i]!=0)
+				tAns=min(tAns,cnt[i]);
+		}
+		ans=max(tAns,ans);
+	}
+	tCnt--;;
+	tag[v]=-1;
+	cnt[s]--;
+}
+
+int main()
+{
+
+	int t;
+	scanf("%d",&t);
+	int ct=1;
+	while(t--)
+	{
+		scanf("%d",&N);
+		for(int i=0;i<N;i++)
+			scanf("%d",arr+i);
+		sort(arr,arr+N);
+		memset(G,0,sizeof(G));
+		tCnt=0;
+		ans=0;
+		for(int i=0;i<N;i++)
+		{
+			for(int j=0;j<N;j++)
+			{
+				if(arr[i]+1==arr[j])
+					G[i][j]=true;
+			}
+		}
+		memset(tag,-1,sizeof(tag));
+		for(int i=0;i<N;i++)
+			Search(i,0);
+		printf("Case #%d: %d\n",ct++,ans);
+	}
+
+	return 0;
+}

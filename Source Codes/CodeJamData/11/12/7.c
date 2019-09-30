@@ -1,0 +1,99 @@
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+    
+int t,i,j,k,l,ans[10000],max,bits[26][10000],n,m,len,count=0;
+char list[10000][100],str[10000][100],string[100],x;
+    scanf("%d",&t);
+    while(t--)
+    {
+                count++;
+                printf("Case #%d: ",count);
+              scanf("%d%d",&n,&m);
+              for(i=0;i<26;i++)
+              {
+                               for(j=0;j<n;j++)
+                                               bits[i][j]=0;
+              }
+              for(i=0;i<n;i++)
+              {
+                              scanf("%s",str[i]);
+                              l=strlen(str[i]);
+                              for(j=0;j<l;j++)
+                              {
+                                              bits[str[i][j]-'a'][i]=1;
+                                              list[i][j]='$';
+                              }
+                              list[i][l]='\0';
+              }
+              for(i=0;i<m;i++)
+              {
+                              scanf("%s",string);
+                              
+              for(k=0;k<n;k++)
+              {
+                              ans[k]=0;
+                              l=strlen(str[k]);
+                              for(j=0;j<l;j++)
+                              {
+                                              bits[str[k][j]-'a'][k]=1;
+                                              list[k][j]='$';
+                              }
+                              list[k][l]='\0';
+              }
+                              for(j=0;j<26;j++)
+                              {
+                                               x=string[j]-'a';
+                                               for(k=0;k<n;k++)
+                                               {
+                                                               if(bits[x][k]==1)
+                                                               {
+                                                               }
+                                                               else
+                                                               {
+                                                                   for(l=0;l<n;l++)
+                                                                   {
+                                                                                   if(bits[x][l]==1)
+                                                                                   {
+                                                                                                    if(strcmp(list[l],list[k])==0)
+                                                                                                    {
+                                                                                                                                  ans[k]+=1;
+                                                                                                                                  break;
+                                                                                                    }
+                                                                                   }
+                                                                   }
+                                                               }
+                                               }
+                                               
+                                               for(k=0;k<n;k++)
+                                               {
+                                                               if(bits[x][k]==1)
+                                                               {
+                                                                                len=strlen(str[k]);
+                                                                                for(l=0;l<len;l++)
+                                                                                {
+                                                                                                  if(str[k][l]==string[j])
+                                                                                                                          list[k][l]=string[j];
+                                                                                }
+                                                               }
+                                               }
+                              }
+                              max=0;
+                              for(j=0;j<n;j++)
+                              {
+                                              if(ans[j]>max)
+                                                            max=ans[j];
+                              }
+                              for(j=0;j<n;j++)
+                              {
+                                              if(ans[j]==max)
+                                                {
+                                                             printf("%s ",str[j]);
+                                                                break;
+                                                }
+                              }
+              }
+                printf("\n");
+    }
+}

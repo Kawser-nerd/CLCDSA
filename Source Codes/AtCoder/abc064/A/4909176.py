@@ -1,0 +1,1 @@
+print('YNEOS'[not eval(input().replace(' ','')+'%4==0')::2])

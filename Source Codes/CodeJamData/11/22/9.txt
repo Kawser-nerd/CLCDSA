@@ -1,0 +1,77 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <math.h>
+#include <algorithm>
+using namespace std;
+
+#define MAXN 1000010
+
+double pos[MAXN];
+double tpos[MAXN];
+int C;
+double D;
+
+bool judge(double time,int n)
+{
+	bool flag=true;
+	memcpy(tpos,pos,sizeof(double)*n);
+	tpos[0]-=time;
+	for(int i=1;i<n;i++)
+	{
+		if(tpos[i]+time-tpos[i-1]<D)
+			return false;
+		double dist=tpos[i]-tpos[i-1];
+		if(dist>D)
+		{
+			tpos[i]-=min(dist-D,time);
+		}
+		else
+		{
+			tpos[i]+=min(D-dist,time);
+		}
+	}
+	return true;
+}
+
+int main()
+{
+	//freopen("in.txt","r",stdin);
+	int T;
+	scanf("%d",&T);
+	int ct=1;
+	while(T--)
+	{
+		int pCnt=0;
+
+		scanf("%d %lf",&C,&D);
+
+		for(int i=0;i<C;i++)
+		{
+			int P,V;
+			scanf("%d %d",&P,&V);
+			for(int j=0;j<V;j++)
+			{
+				pos[pCnt++]=P;
+			}
+		}
+
+		double l=0.0,u=1e20,mid;
+		while(fabs(l-u)>1e-8)
+		{
+			mid=(l+u)/2.0;
+			if(judge(mid,pCnt))
+			{
+				u=mid;
+			}
+			else
+			{
+				l=mid;
+			}
+		}
+		double ans=l;
+		printf("Case #%d: %.7f\n",ct++,ans);
+
+	}
+	return 0;
+}

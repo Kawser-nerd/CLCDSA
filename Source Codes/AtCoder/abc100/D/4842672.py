@@ -1,0 +1,1 @@
+n,m=map(int,input().split());l=[list(map(int,input().split()))for i in range(n)];print(max(sum(sorted([sum(i[s]*(-1)**(t>>s&1)for s in range(3))for i in l],reverse=1)[:m])for t in range(8)))

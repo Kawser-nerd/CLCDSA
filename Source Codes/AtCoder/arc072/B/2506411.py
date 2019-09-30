@@ -1,0 +1,1 @@
+print(['Alice','Brown'][abs(eval(input().replace(' ','-')))<2])

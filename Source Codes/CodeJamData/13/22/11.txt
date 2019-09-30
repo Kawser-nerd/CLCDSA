@@ -1,0 +1,71 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+#include<math.h>
+
+int cm(int m,int n){
+	int result=1;
+	m=n-m<n?n-m:n;
+	for(int i=m+1;i<=n;i++)result*=i;
+	for(int i=1;i<=n-m;i++)result/=i;
+	return result;
+}
+
+int main(){
+	int k=0;
+	scanf("%d",&k);
+	for(int t=0;t<k;t++){
+		int n,x,y;
+		scanf("%d%d%d",&n,&x,&y);
+		x=x<0?-x:x;
+		int lv=0;
+		int s=1;
+		while(s<n){
+			lv++;
+			s=lv*4+s+1;
+			
+		}
+		printf("%d\n",lv);
+		if(x+y>lv*2||(x+y)%2==1)
+		{
+				printf("Case #%d: %f\n",t+1,0.0);
+				continue;
+		}
+		if(x+y<lv*2)
+		{
+				printf("Case #%d: %f\n",t+1,1.0);
+				continue;
+		}
+		if(x==0){
+			float p;
+			int m=n-(s-lv*4-1);
+			int q=lv*2-x;
+			int cc=0;
+			if(m<lv*4+1)printf("Case #%d: %f\n",t+1,0.0);
+			else	printf("Case #%d: %f\n",t+1,1.0);
+			continue;
+		}
+		float p;
+		int m=n-(s-lv*4-1);
+		int q=lv*2-x+1;
+		int cc=0;
+	//	printf("%d %d\n",m,q);
+		if(q>m)p=0.0;
+		else{
+			for(int i=q;i<=m;i++){
+		//		printf("%d %d %d\n",i,m,cm(i,m));
+				cc+=cm(i,m);
+			}
+			for(int i=q;i<=m-lv*2;i++){
+				cc+=cm(i,m);
+			}
+			int d=1<<m;
+		//	printf("%d %d %d %d\n",d,cc,q,m);
+			p=(cc*1.0)/d;
+		}
+		printf("Case #%d: %f\n",t+1,p);
+		
+	}
+	return 0;
+}
+

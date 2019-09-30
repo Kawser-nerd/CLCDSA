@@ -1,0 +1,1 @@
+n,*a=map(int,open(0).read().split());print(0--sum(a)//(n-a.count(0)))

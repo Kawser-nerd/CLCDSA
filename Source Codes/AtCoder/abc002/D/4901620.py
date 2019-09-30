@@ -1,0 +1,1 @@
+print((lambda c,d,N,M:(lambda a:max(len(d['J'])for i in range(1<<N)if d.update(J=[j+1 for j in range(N)if i>>j&1])or all(i in a for i in c(d['J'],2))))([tuple(map(int, input().split()))for _ in[0]*M]))(__import__('itertools').combinations,{},*map(int,input().split())))

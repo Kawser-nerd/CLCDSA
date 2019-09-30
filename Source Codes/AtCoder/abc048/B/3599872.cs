@@ -1,0 +1,87 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace Practice
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Solve();
+        }
+        private const long MOD = 1000000007;
+        
+        static void Solve()
+        {
+            var o = ReadAndParseLongArr();
+            long a = o[0];
+            long b = o[1];
+            long x = o[2];
+
+            long ans = GetTotal(b, x) - GetTotal(a - 1, x);
+            Console.WriteLine(ans);
+        }
+        private static long GetTotal(long n, long x)
+        {
+            if( n >= 0)
+            {
+                return n / x + 1;
+            }
+            else
+            {
+                return 0;
+            }
+        }
+
+        #region ????????
+        private static bool isPrime(long x)
+        {
+            if (x == 2) { return true; }
+            if (x < 2 || x % 2 == 0) { return false; }
+            long i = 3;
+            while (i * i <= x)
+            {
+                if (x % i == 0) { return false; }
+                i = i + 2;
+            }
+            return true;
+        }
+        private static long lcm(long x, long y)
+        {
+            return x / gcd(x, y) * y;
+        }
+        private static long gcd(long x, long y)
+        {
+            return y > 0 ? gcd(y, x % y) : x;
+        }
+        private static long pow(long x, long n)
+        {
+            if (n == 0) { return 1; }
+            long res = pow(x * x % MOD, n / 2);
+            if (n % 2 == 1)
+            {
+                res = res * x % MOD;
+            }
+            return res;
+        }
+        private static int ReadAndParseInt()
+        {
+            return int.Parse(Console.ReadLine());
+        }
+        private static int[] ReadAndParseIntArr()
+        {
+            return Array.ConvertAll(Console.ReadLine().Split(' '), int.Parse);
+        }
+        private static long ReadAndParseLong()
+        {
+            return long.Parse(Console.ReadLine());
+        }
+        private static long[] ReadAndParseLongArr()
+        {
+            return Array.ConvertAll(Console.ReadLine().Split(' '), long.Parse);
+        }
+        #endregion
+    }
+}

@@ -1,0 +1,1 @@
+a,b=map(int,open(0));print(5-abs(5-abs(a-b)))

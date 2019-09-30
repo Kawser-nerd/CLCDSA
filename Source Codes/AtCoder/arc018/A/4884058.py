@@ -1,0 +1,1 @@
+print((lambda x, y: y*(x/100)**2)(*map(float, input().split())))

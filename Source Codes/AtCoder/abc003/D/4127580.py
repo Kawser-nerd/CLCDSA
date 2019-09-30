@@ -1,0 +1,2 @@
+from math import factorial as f
+print(sum(f(x*y)//f(x*y-D-L)//f(D+L)*f(D+L)//f(D)//f(L)*(R-X+1)*(C-Y+1)*(-1)**(dx+dy%2)for R,C,X,Y,D,L in[(int(x)for _ in[0]*3 for x in input().split())]for x,dx in zip([X,X-1,X-1,X-2],[0,1,1,2])for y,dy in zip([Y,Y-1,Y-1,Y-2],[0,1,1,2])if min(x,y)>0 and D+L<=(x*y))%(10**9+7))

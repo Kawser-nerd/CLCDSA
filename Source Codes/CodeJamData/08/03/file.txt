@@ -1,0 +1,125 @@
+#!/usr/bin/perl 
+#=================================================================
+#       AUTHOR:  Zhengwei Xie (Mr), <xiezw@genome.ucsf.edu>
+#      COMPANY:  PKU Center for Theoretical Biology & UCSF QB3
+#      VERSION:  1.0
+#      CREATED:  
+#=================================================================
+use strict;
+use Math::Trig;
+
+open (IN, "C-large.in")|| die "$0 : cannot open file : $!";
+
+open (OUT, ">C_L.out")|| die "$0 : cannot open file : $!";
+my $PI = 3.14159265358979323846;
+my @in = <IN>;
+chomp(@in);
+print "Test arc ",arc(1,0,0,1,1),"\n";
+print "Test sq ",sq(2.),"\n";
+my $num = 1;
+for(my $i=1;$i<@in;$i++) {
+    my $ln = $in[$i];
+    unless($ln =~ /#/) {
+	my $res = solve($ln);
+	printf(OUT "Case #%d: %.6f\n",$num,$res);
+	print "Case #$num ",$res,"\n\n";
+	$num ++;
+    }
+}
+
+sub solve{
+    my ($ln) = @_;
+    my ($f, $R, $t, $r,$g) = split(/\s/,$ln);
+#print $ln,"\t",$g+2*$r,"\n";
+    my $dim;
+    unless($g+2*$r == 0) {
+	$dim = int(($R-$t)/(1.0*$g+2*$r))+1;
+    } else {
+	exit;
+    }
+    print "Dim $dim\t";
+    my $area_s = ($g-2*$f)*($g-2*$f);
+    if($g<=2*$f) {
+	print "\n";
+	return 1;
+    }
+    my $rR = $R-$t-$f;
+    my $esc = 0;
+    my $esc_squ = 0;
+    for(my $i=0;$i<$dim;$i++) {
+	for(my $j=0;$j<$dim;$j++) {
+	    my $cx = ($g+2*$r)*$i + ($r+$g-$f); #out corner
+	    my $cy = ($g+2*$r)*$j + ($r+$g-$f);
+	    my $ix = ($g+2*$r)*$i + ($r+$f); #inner corner
+	    my $iy = ($g+2*$r)*$j + ($r+$f);
+#	    my $ux = ($g+2*$r)*$i + ($r+$f); #upper left
+#	    my $uy = ($g+2*$r)*$j + ($r+$f);
+#	    my $bx = ($g+2*$r)*$i + ($r+$f); #buttom right
+#	    my $by = ($g+2*$r)*$j + ($r+$f);
+	    if(sqrt($cx*$cx+$cy*$cy) - ($R-$t-$f)< 1e-8) {
+		$esc_squ += $area_s;
+	    } elsif(sqrt($ix*$ix+$iy*$iy) - ($R-$t-$f)> 1e-8) {
+		next;
+	    } else {
+		if(sqrt($cx*$cx+$iy*$iy) - ($R-$t-$f)> 1e-8) { #buttom right is outside
+		    if(sqrt($ix*$ix+$cy*$cy) - ($R-$t-$f)> 1e-8) {# upper left is outside
+			my $p1x = $ix; #1: upper left
+			my $p1y = sqrt($rR*$rR-$ix*$ix);
+			my $p2x = sqrt($rR*$rR-$iy*$iy);
+			my $p2y = $iy;
+			my $fir = abs(($p1y-$p2y)*($p2x-$p1x)/2.);
+			my $sec = arc($p1x,$p1y,$p2x,$p2y,$rR);
+			$esc += $fir + $sec;
+			printf("oo 1x %.6f 1y %.6f 2x %.6f 2y %.6f %.6f,%.6f\n",$p1x,$p1y,$p2x,$p2y,$fir,$sec);
+		    } else{#upper left is inside
+			my $p1x = sqrt($rR*$rR-$cy*$cy);
+			my $p1y = $cy;
+			my $p2x = sqrt($rR*$rR-$iy*$iy);
+			my $p2y = $iy;
+			$esc += abs(($p1y-$p2y)*($p2x-$p1x)/2.)+abs(($p1x-$ix)*($g-2*$f));
+			$esc +=arc($p1x,$p1y,$p2x,$p2y,$rR);
+			print "oi\n";
+		    }
+		} else { #buttom right is inside
+		    if(sqrt($ix*$ix+$cy*$cy) - ($R-$t-$f)> 1e-8) {# upper left is outside
+			my $p1x = $ix; #1: upper left
+			my $p1y = sqrt($rR*$rR-$ix*$ix);
+			my $p2x = $cx;
+			my $p2y = sqrt($rR*$rR-$cx*$cx);
+			$esc += abs(($p1y-$p2y)*($p2x-$p1x)/2.)+abs(($p2y-$iy)*($g-2*$f));
+			$esc +=arc($p1x,$p1y,$p2x,$p2y,$rR);
+			print "io\n";
+		    } else {#upper left is inside
+			my $p1x = sqrt($rR*$rR-$cy*$cy); #1: upper left
+			my $p1y = $cy;
+			my $p2x = $cx;
+			my $p2y = sqrt($rR*$rR-$cx*$cx);
+			$esc += abs(($p1y-$p2y)*($p2x-$p1x)/2.)+abs(($p2y-$iy)*($g-2*$f)) + abs(($cy-$p2y)*($p1x-$ix));
+			$esc += arc($p1x,$p1y,$p2x,$p2y,$rR);
+			print "ii\n";
+		    }
+		}
+	    }
+	}
+    }
+    my $tot_area = $PI*sq($R)/4.0;
+    printf("%.6e\t%.6e\t%.6e\n",$esc_squ,$esc,$tot_area);
+    return 1-($esc+$esc_squ)/$tot_area;
+}
+
+sub sq {
+    my ($m) = @_;
+    return $m*$m;
+}
+sub arc {
+    my ($p1x,$p1y,$p2x,$p2y,$rR) = @_;
+    my $dis = sqrt(($p1x-$p2x)*($p1x-$p2x)+ ($p1y-$p2y)*($p1y-$p2y));
+    my $rad = 2*($PI/2-acos($dis/2/$rR));
+print "dis:",$dis/2,"\t",$rR,"\t",$rad,"\n";
+    my $cat = $rR*$rR*$rad/2 - $rR*$rR*sin($rad)/2.;
+    return $cat;
+}
+sub hashValueDescendingNum {
+#   $hhmyave{$b} <=> $hhmyave{$a};
+}
+#sort{$a<=>$b}

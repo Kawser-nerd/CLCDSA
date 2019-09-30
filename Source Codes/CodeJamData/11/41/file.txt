@@ -1,0 +1,5 @@
+template: template.c
+	gcc -O2 -lm template.c -o template.bin
+
+clean:
+	rm -rf template.bin

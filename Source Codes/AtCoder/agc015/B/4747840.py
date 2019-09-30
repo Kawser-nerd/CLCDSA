@@ -1,0 +1,1 @@
+s=input();print(sum([(i*2+(len(s)-i-1) if h!="D" else i+(len(s)-i-1)*2)for i,h in enumerate(list(s))]))

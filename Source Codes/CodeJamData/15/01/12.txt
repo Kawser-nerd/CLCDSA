@@ -1,0 +1,57 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+    FILE *input;
+    input= fopen("C:\\A-large.in", "r");
+    FILE *output;
+    output= fopen("C:\\Users\\User\\Desktop\\output.out", "w");
+    FILE *myout;
+    myout= fopen("C:\\Users\\User\\Desktop\\myout1.out", "w");
+    int t=0,tl;
+    int arr[1000];
+    fscanf(input,"\n%d",&t);
+    printf("%d\n",t);
+
+    int max,i,j;
+    for(tl=0;tl<t;tl++){
+        int sum=0;
+        int fin=0;
+        int tem=0;
+        fscanf(input,"\n%d   ",&max);
+        fprintf(myout,"%d ",max);
+        //printf("%d\n",max);
+        for(i=0;i<=max;i++){
+            fscanf(input,"\n%1d",&arr[i]);
+            fprintf(myout,"%d",arr[i]);
+            //printf("%d\n",arr[i]);
+        }
+        for(i=max;i>0;i--){
+                sum=0;
+            if(arr[i]>0){
+                for(j=0;j<i;j++){
+                    sum += arr[j];
+                }
+                printf("sum is %d\n",sum);
+                if(i>sum){
+                    tem=i-sum;
+                }
+                printf("tem is %d\n",tem);
+                if(tem>fin){
+                        fin = tem;
+                }
+                printf("fin is %d\n",fin);
+            }
+        }
+        fprintf(output,"Case #%d: %d\n",tl+1,fin);
+        //printf("\n");
+        fprintf(myout,"\n");
+    }
+
+    fclose(myout);
+     fclose(output);
+    fclose(input);
+
+    return 0;
+}

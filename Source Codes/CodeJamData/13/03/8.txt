@@ -1,0 +1,1 @@
+By using buildResults.cpp, we can generate all the answers for lengths between 7 to 101. We then use these values to compose builtResults.txt (just by copying them), and add values for strings of length 1-6 manually. Then, in main.cpp we use these values in builtResults.txt. It takes approx. 5 minutes to build all the results.

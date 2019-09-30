@@ -1,0 +1,1 @@
+n,a,b,l=map(int,input().split());print((l*(b/a)**n if l*(b/a)**n>10**(-6) else 0))

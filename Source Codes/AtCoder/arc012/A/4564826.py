@@ -1,0 +1,1 @@
+print(["Su","Fr","Th","We","Tu","Mo","Sa"].index(input()[:2])%6)

@@ -1,0 +1,125 @@
+#include <stdio.h>
+#include <string.h>
+#define GET(X,Y) ( (map[X][(Y>>2)] & (1<<(3-(Y&3)))) != 0 )
+
+
+char map[600][200];
+
+char bm[600][600];
+char used[600][600];
+ 
+int down[600][600];
+int _m,_n;
+int okay(int x,int y,int r)
+{
+	int i,j,k;
+	if(x<0) return 0;
+	if(x+r>_m) return 0;
+	if(y<0) return 0;
+	if(y+r>_n) return 0;
+	for(i=x;i<x+r;i++)
+	{
+		for(j=y;j<y+r;j++)
+		{
+			if(used[i][j]) return 0;
+		}
+	}
+	int pre=bm[x][y];
+	for(i=x+1;i<x+r;i++)
+	{
+		if(bm[i][y]==pre) return 0;
+		pre=(pre==0?1:0);
+	}
+	for(i=x;i<x+r;i++)
+	{
+		int pre=bm[i][y];
+		for(j=y+1;j<y+r;j++)
+		{
+			if(bm[i][j]==pre) return 0;
+			pre=(pre==0?1:0);
+		}
+	}
+	return 1;
+}
+void cut(int x,int y,int r)
+{
+	int i,j,k;
+	for(i=x;i<x+r;i++)
+		for(j=y;j<y+r;j++)
+		{
+			used[i][j]=1;
+		}
+}
+int getmin(int a,int b)
+{
+	return a<b?a:b;
+}
+int res[1000];
+int main()
+{
+        int m,n;char t;
+        int i,j;          
+		int cas;
+
+		freopen("e:\\14.txt","r",stdin);
+		freopen("e:\\15.txt","w",stdout);
+		scanf("%d",&cas);
+		for(int x=1;x<=cas;x++)
+		{
+        scanf("%d%d",&m,&n);
+		_m=m;_n=n;
+        for (i=0;i<m;++i)
+        {   
+                for (j=0;j<(n>>2);++j)
+                        scanf("%1X",&map[i][j]);
+        }   
+        for (i=0;i<m;++i)
+                for (j=0;j<n;++j)
+                {   
+                        bm[i][j]=GET(i,j);
+                        used[i][j]=0;
+                }   
+		/*for(i=0;i<m;i++)
+		{
+			for(j=0;j<n;j++)
+			{
+				printf("%d ",bm[i][j]);
+			}
+			printf("\n");
+		}*/
+
+		memset(used,0,sizeof(used));
+	
+		//printf("Case #%d:")
+		int c2=0;
+		for(i=getmin(m,n);i>=1;i--)
+		{
+			int counter=0;
+			for(int u=0;u<m;u++)
+				for(int v=0;v<n;v++)
+				{
+					if(okay(u,v,i)==1)
+					{
+						counter++;
+						//printf("<%d,%d,%d>",u,v,i);
+						cut(u,v,i);
+					}
+				}
+			res[i]=counter;
+			if(counter) c2++;
+		}
+		printf("Case #%d: %d\n",x,c2);
+		for(i=getmin(m,n);i>=1;i--)
+		{
+			if(res[i])
+			printf("%d %d\n",i,res[i]);
+		}
+		}
+		/*for(i=0;i<m;i++)
+			for(j=0;j<n;j++)
+			{
+				//printf("<%d>",okay(i,j,6) );
+			}*/
+
+}
+

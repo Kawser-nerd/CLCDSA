@@ -1,0 +1,1 @@
+print('ABC{}'.format(input()))

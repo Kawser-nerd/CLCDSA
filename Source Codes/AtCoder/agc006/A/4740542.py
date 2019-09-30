@@ -1,0 +1,1 @@
+I=input;n=i=int(I());s,t=I(),I();j=0;exec('j=max(i*(s[-i:]==t[:i]),j);i-=1;'*n);print(2*n-j)

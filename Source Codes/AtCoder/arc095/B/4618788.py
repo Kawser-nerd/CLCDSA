@@ -1,0 +1,1 @@
+input();a=list(map(int,input().split()));m=max(a);b=[abs(2*i-m+0.1) for i in a];print(m,a[b.index(min(b))])

@@ -1,0 +1,1 @@
+n = int(input());print(sum(list(map(lambda x:(x[1]-x[0]+1), [list(map(int, input().split())) for _ in range(n)]))))

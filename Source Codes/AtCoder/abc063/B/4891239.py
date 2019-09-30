@@ -1,0 +1,1 @@
+S=input();print('yneos'[len(S)!=len(set(list(S)))::2])

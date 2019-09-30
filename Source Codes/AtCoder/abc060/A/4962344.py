@@ -1,0 +1,1 @@
+A,B,C=input().split();print('YNEOS'[(A[-1]!=B[0])|(B[-1]!=C[0])::2])

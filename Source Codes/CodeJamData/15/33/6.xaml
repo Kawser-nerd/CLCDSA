@@ -1,0 +1,125 @@
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Forms;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
+
+namespace Code_Jam
+{
+    /// <summary>
+    /// Interaction logic for MainWindow.xaml
+    /// </summary>
+    public partial class MainWindow : Window
+    {
+        public string localPath;
+        public OpenFileDialog ofd;
+
+        StreamReader sr;
+        StreamWriter sw;
+
+        public long[] time = new long[1000001];
+
+        public MainWindow()
+        {
+            InitializeComponent();
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            localPath = System.AppDomain.CurrentDomain.BaseDirectory;
+        }
+
+        private void inButton_Click(object sender, RoutedEventArgs e)
+        {
+            ofd = new OpenFileDialog();
+            ofd.ShowDialog();
+
+            inPath.Text = ofd.FileName;
+            outPath.Text = ofd.FileName + ".txt";
+        }
+
+        private void runButton_Click(object sender, RoutedEventArgs e)
+        {
+            sr = new StreamReader(inPath.Text);
+            sw = new StreamWriter(outPath.Text);
+
+            string input = sr.ReadLine();
+            int cases;
+            int.TryParse(input, out cases);
+
+            for (int i = 0; i < cases; i++)
+            {
+                //input = sr.ReadLine();
+                //string[] RCW = input.Split(' ');
+                //int R; int.TryParse(RCW[0], out R);
+                //int C; int.TryParse(RCW[1], out C);
+                //int W; int.TryParse(RCW[2], out W);
+
+                //int output = C/W * R + W + ((C % W == 0) ? (-1) : (0));
+
+                input = sr.ReadLine();
+                string[] CDV = input.Split(' ');
+                long C; Int64.TryParse(CDV[0], out C);
+                int D; int.TryParse(CDV[1], out D);
+                long V; Int64.TryParse(CDV[2], out V);
+
+                List<long> coins = new List<long>();
+                input = sr.ReadLine();
+                string[] co = input.Split(' ');
+
+                for (int j = 0; j < D; j++)
+                {
+                    long temp; Int64.TryParse(co[j], out temp);
+                    coins.Add(temp);
+                }
+
+                if (coins[0] != 1)
+                    coins.Add(1);
+                coins.Sort();
+
+                int d = 0;
+                long max = 0;
+                while (true)
+                {
+                    if (d < coins.Count - 1)
+                    {
+                        max += coins[d] * C;
+                        if (max >= V)
+                            break;
+                        if (coins[d + 1] > max + 1)
+                        {
+                            coins.Add(max + 1);
+                            coins.Sort();
+                        }
+                        d++;
+                    }
+                    else
+                    {
+                        max += coins[d] * C;
+                        if (max >= V)
+                            break;
+                        coins.Add(max + 1);
+                        coins.Sort();
+                        d++;
+                    }
+                }
+
+
+                int output = coins.Count - D;
+                sw.Write("Case #" + (i+1).ToString() + ": " + output.ToString() + "\n");
+            }
+
+            sr.Close();
+            sw.Close();
+        }
+    }
+}

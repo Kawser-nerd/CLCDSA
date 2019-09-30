@@ -1,0 +1,1 @@
+print(*('>'*(i>'O')+'A'*(i<'K')or'<'for i in input().split()))

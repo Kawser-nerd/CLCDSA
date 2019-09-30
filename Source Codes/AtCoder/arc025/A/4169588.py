@@ -1,0 +1,1 @@
+print(sum(map(max,zip(*[map(int,input().split())for _ in'aa']))))

@@ -1,0 +1,1 @@
+print(eval(input().replace(' ','**2*'))/1e4)

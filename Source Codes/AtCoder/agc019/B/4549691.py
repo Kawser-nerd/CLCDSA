@@ -1,0 +1,12 @@
+s = input()
+n = len(s)
+dp = [0]*26
+
+for i in s:
+  dp[ord(i) - ord('a')]+=1
+#print(dp)
+ans = 0
+#???????????????????
+for j in dp:
+  ans += (j * (n-j))
+print(ans//2+1)

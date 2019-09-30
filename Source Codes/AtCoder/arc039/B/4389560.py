@@ -1,0 +1,1 @@
+from scipy.misc import*;n,k=map(int,input().split());print(comb(n+~-k*(n>k),k%n,1)%(10**9+7))

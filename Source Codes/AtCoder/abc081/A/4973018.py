@@ -1,0 +1,5 @@
+str=list(input())
+s1=int(str[0])
+s2=int(str[1])
+s3=int(str[2])
+print(s1+s2+s3)

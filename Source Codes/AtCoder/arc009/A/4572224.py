@@ -1,0 +1,1 @@
+print(eval("+eval(input().replace(' ','*'))"*int(input()))*105//100)

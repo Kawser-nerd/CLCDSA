@@ -1,0 +1,1 @@
+from itertools import*;n,m,l,*t=map(int,open(0).read().split());print(max(n//p*(m//q)*(l//r)for p,q,r in permutations(t)))

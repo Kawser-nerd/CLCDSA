@@ -1,0 +1,5 @@
+N = int(input())
+numbers_list = sorted([int(num) for num in input().split()])
+Alice_sum = sum([numbers_list[index] for index in range(N) if index % 2 == 0])
+Bob_sum = sum([numbers_list[index] for index in range(N) if index % 2 != 0])
+print(abs(Alice_sum - Bob_sum))

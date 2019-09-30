@@ -1,0 +1,1 @@
+print(["Yes", "No"][not("9" in input())])

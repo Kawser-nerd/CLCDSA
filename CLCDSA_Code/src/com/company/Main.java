@@ -16,7 +16,7 @@ public class Main  extends JavaParserBaseVisitor {
     public static void main(String[] args) throws IOException {
 	// write your code here
 
-        CharStream input = CharStreams.fromFileName("C:\\Users\\kwnaf\\IdeaProjects\\antlrTesting\\src\\test.java");
+        CharStream input = CharStreams.fromFileName("C:\\Users\\kawser\\IdeaProjects\\CLCDSA\\CLCDSA_Code\\src\\test.java");
         JavaLexer lexer = new JavaLexer(input);
         CommonTokenStream tokens = new CommonTokenStream(lexer);
         JavaParser parser = new JavaParser(tokens); // Parser Created

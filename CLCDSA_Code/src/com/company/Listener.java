@@ -61,6 +61,7 @@ public class Listener extends JavaParserBaseListener {
         variableno++;
     }
 
+
     /*
     @Override
     public void enterArguments(JavaParser.ArgumentsContext ctx) {
@@ -125,7 +126,6 @@ public class Listener extends JavaParserBaseListener {
     public void enterArrayInitializer(JavaParser.ArrayInitializerContext ctx) {
         variableno++;
     }
-
 
 
     @Override

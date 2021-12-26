@@ -30,7 +30,7 @@ parser grammar JavaParser;
 options { tokenVocab=JavaLexer; }
 
 compilationUnit
-    : packageDeclaration? importDeclaration* typeDeclaration* EOF
+    : packageDeclaration? importDeclaration* typeDeclaration* memberDeclaration* EOF
     ;
 
 packageDeclaration

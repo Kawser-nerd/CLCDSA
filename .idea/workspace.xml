@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="f5849246-5900-4828-8d4c-44b00f8552dc" name="Changes" comment="Updated with CSV merging and Read/Write options. Also configured the datasource files along with creation of positive and negative cross language clones.">
+      <change beforePath="$PROJECT_DIR$/CLCDSA_Code/JavaParser.g4" beforeDir="false" afterPath="$PROJECT_DIR$/CLCDSA_Code/JavaParser.g4" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CLCDSA_Code/src/JavaParser/JavaLexer.java" beforeDir="false" afterPath="$PROJECT_DIR$/CLCDSA_Code/src/JavaParser/JavaLexer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CLCDSA_Code/src/JavaParser/JavaParser.interp" beforeDir="false" afterPath="$PROJECT_DIR$/CLCDSA_Code/src/JavaParser/JavaParser.interp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CLCDSA_Code/src/JavaParser/JavaParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/CLCDSA_Code/src/JavaParser/JavaParser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CLCDSA_Code/src/JavaParser/JavaParserBaseListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/CLCDSA_Code/src/JavaParser/JavaParserBaseListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CLCDSA_Code/src/JavaParser/JavaParserBaseVisitor.java" beforeDir="false" afterPath="$PROJECT_DIR$/CLCDSA_Code/src/JavaParser/JavaParserBaseVisitor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CLCDSA_Code/src/JavaParser/JavaParserListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/CLCDSA_Code/src/JavaParser/JavaParserListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CLCDSA_Code/src/JavaParser/JavaParserVisitor.java" beforeDir="false" afterPath="$PROJECT_DIR$/CLCDSA_Code/src/JavaParser/JavaParserVisitor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CLCDSA_Code/src/com/company/Listener.java" beforeDir="false" afterPath="$PROJECT_DIR$/CLCDSA_Code/src/com/company/Listener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CLCDSA_Code/src/com/company/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/CLCDSA_Code/src/com/company/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source Codes/AtCoder/abc001/A/4738062.java" beforeDir="false" afterPath="$PROJECT_DIR$/Source Codes/AtCoder/abc001/A/4738062.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="cb8e37eb6b924c6585aa412816ed52cabf4ae70d" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RESET_MODE" value="MIXED" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectId" id="22idTtal5TDMQIZwHWuDm2lBSdS" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="ChangesTree.GroupingKeys" value="directory" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="org.jetbrains.plugins.github.ui.GithubSettingsConfigurable" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\kawser\IdeaProjects\CLCDSA\CLCDSA_Code\libs" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.testcsv">
+    <configuration name="DataCollection" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.company.DataCollection" />
+      <module name="CLCDSA" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.company.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DataMerging" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.company.DataMerging" />
+      <module name="CLCDSA" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.company.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PythonMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.company.PythonMain" />
+      <module name="CLCDSA" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.company.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="testcsv" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.company.testcsv" />
+      <module name="CLCDSA" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.company.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="testing" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.company.testing" />
+      <module name="CLCDSA" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.company.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.testing" />
+        <item itemvalue="Application.testcsv" />
+        <item itemvalue="Application.PythonMain" />
+        <item itemvalue="Application.DataMerging" />
+        <item itemvalue="Application.DataCollection" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="f5849246-5900-4828-8d4c-44b00f8552dc" name="Changes" comment="" />
+      <created>1640324356471</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1640324356471</updated>
+      <workItem from="1640324359995" duration="422000" />
+      <workItem from="1640324875185" duration="64000" />
+      <workItem from="1640324953340" duration="809000" />
+      <workItem from="1640377001608" duration="17456000" />
+      <workItem from="1640395766328" duration="31401000" />
+      <workItem from="1640475388557" duration="486000" />
+      <workItem from="1640475893285" duration="3201000" />
+      <workItem from="1640479198326" duration="27000" />
+      <workItem from="1640479237132" duration="4000" />
+    </task>
+    <task id="LOCAL-00001" summary="Updated with CSV merging and Read/Write options. Also configured the datasource files along with creation of positive and negative cross language clones.">
+      <created>1640466846828</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1640466846828</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Updated with CSV merging and Read/Write options. Also configured the datasource files along with creation of positive and negative cross language clones.">
+      <created>1640466974466</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1640466974466</updated>
+    </task>
+    <task id="LOCAL-00003" summary="fixup! Updated with CSV merging and Read/Write options. Also configured the datasource files along with creation of positive and negative cross language clones.">
+      <created>1640477707561</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1640477707561</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+        <entry key="c3a8b28b-74e8-455d-a801-ab3bfde85466">
+          <value>
+            <State>
+              <option name="CUSTOM_BOOLEAN_PROPERTIES">
+                <map>
+                  <entry key="Show.Git.Branches" value="true" />
+                </map>
+              </option>
+              <option name="SHOW_ONLY_AFFECTED_CHANGES" value="true" />
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="HEAD" />
+                      </list>
+                    </value>
+                  </entry>
+                  <entry key="roots">
+                    <value>
+                      <list>
+                        <option value="$PROJECT_DIR$" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="OPEN_GENERIC_TABS">
+      <map>
+        <entry key="c3a8b28b-74e8-455d-a801-ab3bfde85466" value="TOOL_WINDOW" />
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="Updated with CSV merging and Read/Write options. Also configured the datasource files along with creation of positive and negative cross language clones." />
+    <MESSAGE value="fixup! Updated with CSV merging and Read/Write options. Also configured the datasource files along with creation of positive and negative cross language clones." />
+    <option name="LAST_COMMIT_MESSAGE" value="fixup! Updated with CSV merging and Read/Write options. Also configured the datasource files along with creation of positive and negative cross language clones." />
+  </component>
+</project>

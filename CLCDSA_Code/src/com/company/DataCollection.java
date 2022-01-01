@@ -30,7 +30,7 @@ public class DataCollection {
     private static String datafolder = "./Source Codes";
 
     public static void main(String[] args) throws IOException {
-        String fileExtenstion = "python";
+        String fileExtenstion = "java";
 
         List<Path> allFiles = listAllFiles(fileExtenstion);
         AtomicInteger count = new AtomicInteger();

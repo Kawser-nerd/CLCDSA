@@ -71,8 +71,13 @@ class DNNModel:
             model.save("CLCDSA_Model.h5")
             print("Model Saved to disk")
 
+    # make class predictions with the model
+    def testMOdel(self, X1, X2, y):
+        model = keras.models.load_model('CLCDSA_Model')
 
-# make class predictions with the model
+        predictions = (model([X1, X2]) > 0.5)
+        predictions = np.array(predictions)
+            
 
 if __name__ == "__main__":
 

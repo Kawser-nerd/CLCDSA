@@ -9,9 +9,8 @@ from keras import backend as K
 from keras.utils.generic_utils import get_custom_objects
 from customize import SingleConnected
 
-datasetpath = os.path.join(os.getcwd(), 'pima-indians-diabetes.csv')
-dataset = loadtxt(datasetpath, delimiter=',')
-shape = 4  ## dataset dividation
+
+shape = 9
 
 
 class DNNModel:
@@ -27,6 +26,7 @@ class DNNModel:
         self.dataset = dataset
         get_custom_objects().update({'activation': Activation(self.custom_activation)})
 
+    @tf.keras.utils.register_keras_serializable()
     def custom_activation(self, x):
         return 1 / (1 + tf.exp(-tf.reduce_sum(x, axis=-1, keepdims=True)))
 
@@ -36,12 +36,13 @@ class DNNModel:
         model1_Input = Input(shape=(shape,))
         model1_hidden1 = Dense(100, activation='relu', kernel_initializer='he_normal')(model1_Input)
         model1_dropout1 = Dropout(0.2)(model1_hidden1)
-        model2_hidden2 = Dense(100, activation='relu', kernel_initializer='he_normal')(model1_dropout1)
-        model1_output = Dropout(0.2)(model2_hidden2)
+        model1_hidden2 = Dense(100, activation='relu', kernel_initializer='he_normal')(model1_dropout1)
+        model1_output = Dropout(0.2)(model1_hidden2)
+
 
         # second Initialization layer
         model2_Input = Input(shape=(shape,))
-        model2_hidden1 = Dense(100, activation='relu', kernel_initializer='he_normal') (model2_Input)
+        model2_hidden1 = Dense(100, activation='relu', kernel_initializer='he_normal')(model2_Input)
         model2_dropout1 = Dropout(0.2)(model2_hidden1)
         model2_hidden2 = Dense(100, activation='relu', kernel_initializer='he_normal')(model2_dropout1)
         model2_output = Dropout(0.2)(model2_hidden2)
@@ -62,14 +63,55 @@ class DNNModel:
 
     def mainModel(self, X1, X2, y, save=0):
         model = self.dlModel()
-        optimizer = SGD(lr=0.0001, decay=0.03)
+        optimizer = SGD(learning_rate=0.0001, decay=0.03)
         model.compile(loss='binary_crossentropy', optimizer=optimizer, metrics=['accuracy'])
-        model.fit([X1, X2], y, epochs=10, batch_size=10)
+        #model.compile(loss='binary_crossentropy',  metrics=['accuracy'])
+        model.fit([X1, X2], y, epochs=150, batch_size=1000)
         _, accuracy = model.evaluate([X1, X2], y)
         print('Accuracy: %.2f' % (accuracy * 100))
         if(save):
-            model.save("CLCDSA_Model.h5")
+            model.save("model.h5")
+            model.save("CLCDSA_Model")
             print("Model Saved to disk")
+
+        predictions = (model([X1, X2]) > 0.5)
+        predictions = np.array(predictions)
+        for i in range(0, 10):
+            print('%s %s => %d (expected %d))' % (X1[i].tolist(), X2[i].tolist(), predictions[i], y[i]))
+
+        for i in range(1897480, 1897500):
+            print('%s %s => %d (expected %d))' % (X1[i].tolist(), X2[i].tolist(), predictions[i], y[i]))
+
+
+    def testMOdel(self, X1, X2, y):
+        model = keras.models.load_model('CLCDSA_Model')
+
+        predictions = (model([X1, X2]) > 0.5)
+        predictions = np.array(predictions)
+
+        for i in range(0,10):
+            print('%s %s => %d (expected %d))' % (X1[i].tolist(), X2[i].tolist(), predictions[i], y[i]))
+
+        for i in range(202,214):
+            print('%s %s => %d (expected %d))' % (X1[i].tolist(), X2[i].tolist(), predictions[i], y[i]))
+
+
+def datasetPreperation():
+    positivedatasetpath = os.path.join(os.getcwd(), 'PositiveClones.csv')
+    negativedatasetpath = os.path.join(os.getcwd(), 'NegativeClones1.csv')
+    TandTFileName = 'dataTrueFalse.csv'
+
+    with open(os.path.join(os.getcwd(), TandTFileName), 'w+') as f:
+        file1 = open(positivedatasetpath, 'r')
+        file2 = open(negativedatasetpath, 'r')
+        for line in file1:
+            f.write(line)
+        for line in file2:
+            f.write(line)
+        file1.close()
+        file2.close()
+    f.close()
+    return TandTFileName
 
 
 # make class predictions with the model

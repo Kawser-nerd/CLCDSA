@@ -2,9 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f5849246-5900-4828-8d4c-44b00f8552dc" name="Changes" comment="Collected Feature Metrics">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/libs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CLCDSA.iml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/NegativeClones1.csv" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/NegativeClones10.csv" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/NegativeClones2.csv" afterDir="false" />
@@ -16,10 +13,13 @@
       <change afterPath="$PROJECT_DIR$/NegativeClones8.csv" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/NegativeClones9.csv" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/PositiveClones.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CLCDSA_Code/src/com/company/DataCollection.java" beforeDir="false" afterPath="$PROJECT_DIR$/CLCDSA_Code/src/com/company/DataCollection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CLCDSA_Code/src/com/company/testcsv.java" beforeDir="false" afterPath="$PROJECT_DIR$/CLCDSA_Code/src/com/company/testcsv.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CLCDSA_Code/CLCDSA_DLCC/DNNModel.py" beforeDir="false" afterPath="$PROJECT_DIR$/CLCDSA_Code/CLCDSA_DLCC/DNNModel.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CLCDSA_Code/CLCDSA_Model/keras_metadata.pb" beforeDir="false" afterPath="$PROJECT_DIR$/CLCDSA_Code/CLCDSA_Model/keras_metadata.pb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CLCDSA_Code/CLCDSA_Model/saved_model.pb" beforeDir="false" afterPath="$PROJECT_DIR$/CLCDSA_Code/CLCDSA_Model/saved_model.pb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CLCDSA_Code/CLCDSA_Model/variables/variables.data-00000-of-00001" beforeDir="false" afterPath="$PROJECT_DIR$/CLCDSA_Code/CLCDSA_Model/variables/variables.data-00000-of-00001" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CLCDSA_Code/CLCDSA_Model/variables/variables.index" beforeDir="false" afterPath="$PROJECT_DIR$/CLCDSA_Code/CLCDSA_Model/variables/variables.index" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CLCDSA_Code/model.h5" beforeDir="false" afterPath="$PROJECT_DIR$/CLCDSA_Code/model.h5" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -179,6 +179,8 @@
       <workItem from="1640532316896" duration="860000" />
       <workItem from="1640826955464" duration="5910000" />
       <workItem from="1640958951776" duration="11972000" />
+      <workItem from="1640999184089" duration="266000" />
+      <workItem from="1641013407185" duration="788000" />
     </task>
     <task id="LOCAL-00001" summary="Updated with CSV merging and Read/Write options. Also configured the datasource files along with creation of positive and negative cross language clones.">
       <created>1640466846828</created>
@@ -215,7 +217,14 @@
       <option name="project" value="LOCAL" />
       <updated>1640480432973</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Collected Feature Metrics">
+      <created>1640999319177</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1640999319177</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

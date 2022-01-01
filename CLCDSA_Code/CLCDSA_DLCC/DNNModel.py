@@ -64,7 +64,7 @@ class DNNModel:
         model = self.dlModel()
         optimizer = SGD(lr=0.0001, decay=0.03)
         model.compile(loss='binary_crossentropy', optimizer=optimizer, metrics=['accuracy'])
-        model.fit([X1, X2], y, epochs=10, batch_size=10)
+        model.fit([X1, X2], y, epochs=200, batch_size=1000)
         _, accuracy = model.evaluate([X1, X2], y)
         print('Accuracy: %.2f' % (accuracy * 100))
         if(save):

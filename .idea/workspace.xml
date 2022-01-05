@@ -1,21 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f5849246-5900-4828-8d4c-44b00f8552dc" name="Changes" comment="Collected Feature Metrics">
-      <change afterPath="$PROJECT_DIR$/NegativeClones1.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NegativeClones10.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NegativeClones2.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NegativeClones3.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NegativeClones4.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NegativeClones5.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NegativeClones6.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NegativeClones7.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NegativeClones8.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NegativeClones9.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PositiveClones.csv" afterDir="false" />
+    <list default="true" id="f5849246-5900-4828-8d4c-44b00f8552dc" name="Changes" comment="Merge remote-tracking branch 'origin/master'&#10;&#10;# Conflicts:&#10;#&#9;CLCDSA_Code/CLCDSA_DLCC/DNNModel.py">
+      <change afterPath="$PROJECT_DIR$/CLCDSA_Code/CLCDSA_DLCC/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CLCDSA_Code/CLCDSA_DLCC/.idea/CLCDSA_DLCC.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CLCDSA_Code/CLCDSA_DLCC/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CLCDSA_Code/CLCDSA_DLCC/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CLCDSA_Code/CLCDSA_DLCC/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CLCDSA_Code/CLCDSA_DLCC/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CLCDSA_Code/CLCDSA_DLCC/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CLCDSA_Code/clcdsa_testing.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CLCDSA_Code/CLCDSA_DLCC/DNNModel.py" beforeDir="false" afterPath="$PROJECT_DIR$/CLCDSA_Code/CLCDSA_DLCC/DNNModel.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CLCDSA_Code/CLCDSA_Model/keras_metadata.pb" beforeDir="false" afterPath="$PROJECT_DIR$/CLCDSA_Code/CLCDSA_Model/keras_metadata.pb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CLCDSA_Code/CLCDSA_Model/saved_model.pb" beforeDir="false" afterPath="$PROJECT_DIR$/CLCDSA_Code/CLCDSA_Model/saved_model.pb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CLCDSA_Code/CLCDSA_Model/variables/variables.data-00000-of-00001" beforeDir="false" afterPath="$PROJECT_DIR$/CLCDSA_Code/CLCDSA_Model/variables/variables.data-00000-of-00001" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CLCDSA_Code/CLCDSA_Model/variables/variables.index" beforeDir="false" afterPath="$PROJECT_DIR$/CLCDSA_Code/CLCDSA_Model/variables/variables.index" afterDir="false" />
@@ -36,11 +31,11 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="cb8e37eb6b924c6585aa412816ed52cabf4ae70d" />
+        <entry key="$PROJECT_DIR$" value="78f7fd57e7dc90e4d4f9a50eade870f7cc3468b0" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-    <option name="RESET_MODE" value="MIXED" />
+    <option name="RESET_MODE" value="HARD" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -79,11 +74,9 @@
       <recent name="C:\Users\kawser\IdeaProjects\CLCDSA\DataFeatures" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.testcsv">
-    <configuration name="DataCollection" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="ALTERNATIVE_JRE_PATH" value="17" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
-      <option name="MAIN_CLASS_NAME" value="com.company.DataCollection" />
+  <component name="RunManager" selected="Application.Main">
+    <configuration name="DataMerging" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.company.DataMerging" />
       <module name="CLCDSA" />
       <extension name="coverage">
         <pattern>
@@ -95,8 +88,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="DataMerging" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.company.DataMerging" />
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.company.Main" />
       <module name="CLCDSA" />
       <extension name="coverage">
         <pattern>
@@ -149,11 +142,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Main" />
         <item itemvalue="Application.testing" />
         <item itemvalue="Application.testcsv" />
         <item itemvalue="Application.PythonMain" />
         <item itemvalue="Application.DataMerging" />
-        <item itemvalue="Application.DataCollection" />
       </list>
     </recent_temporary>
   </component>
@@ -181,6 +174,7 @@
       <workItem from="1640958951776" duration="11972000" />
       <workItem from="1640999184089" duration="266000" />
       <workItem from="1641013407185" duration="788000" />
+      <workItem from="1641388744126" duration="2481000" />
     </task>
     <task id="LOCAL-00001" summary="Updated with CSV merging and Read/Write options. Also configured the datasource files along with creation of positive and negative cross language clones.">
       <created>1640466846828</created>
@@ -224,7 +218,14 @@
       <option name="project" value="LOCAL" />
       <updated>1640999319177</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Merge remote-tracking branch 'origin/master'&#10;&#10;# Conflicts:&#10;#&#9;CLCDSA_Code/CLCDSA_DLCC/DNNModel.py">
+      <created>1641046039993</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1641046039993</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -281,6 +282,9 @@
     <MESSAGE value="fixup! Updated with CSV merging and Read/Write options. Also configured the datasource files along with creation of positive and negative cross language clones." />
     <MESSAGE value="Updated with CSV merging and Read/Write options. Also configured the datasource files along with creation of positive and negative cross language clones." />
     <MESSAGE value="Collected Feature Metrics" />
-    <option name="LAST_COMMIT_MESSAGE" value="Collected Feature Metrics" />
+    <MESSAGE value="fixup! updated deepNN model with newer feature value and confusion matrix." />
+    <MESSAGE value="updated deepNN model with newer feature value and confusion matrix." />
+    <MESSAGE value="Merge remote-tracking branch 'origin/master'&#10;&#10;# Conflicts:&#10;#&#9;CLCDSA_Code/CLCDSA_DLCC/DNNModel.py" />
+    <option name="LAST_COMMIT_MESSAGE" value="Merge remote-tracking branch 'origin/master'&#10;&#10;# Conflicts:&#10;#&#9;CLCDSA_Code/CLCDSA_DLCC/DNNModel.py" />
   </component>
 </project>

@@ -2,7 +2,7 @@
 from keras.engine.base_layer import Layer
 import tensorflow as tf
 
-
+@tf.keras.utils.register_keras_serializable()
 class SingleConnected(Layer):
 
     #creator
@@ -17,7 +17,7 @@ class SingleConnected(Layer):
 
         self.kernel = self.add_weight(name='kernel',
                                       shape=[weight_shape],
-                                      initializer='uniform',
+                                      initializer='he_normal',
                                       trainable=True)
 
         self.bias = self.add_weight(name='bias',
@@ -30,7 +30,7 @@ class SingleConnected(Layer):
         # operation:
 
     def call(self, inputs):
-        return (inputs * self.kernel)
+        return (inputs * self.kernel + self.bias)
 
         # output shape
 

@@ -12,7 +12,24 @@ import java.io.IOException;
 
 public class CSharpMain {
     public static void main(String[] args) throws IOException{
-        CharStream input = CharStreams.fromFileName("C:\\Users\\kwnaf\\IdeaProjects\\antlrTesting\\src\\testcs.cs");
+        CharStream input = CharStreams.fromFileName("C:\\Users\\kawser\\IdeaProjects\\CLCDSA\\Source Codes\\AtCoder\\abc001\\A\\4738062.java");
+/*
+        CharStream input = CharStreams.fromString(
+
+    "class Main { \n"+
+            "public static void main(String args[]) { \n" +
+              " try (Scanner scan = new Scanner(System.in);) { \n" +
+                   " String s1 = scan.nextLine(); \n" +
+                   " String s2 = scan.nextLine(); \n" +
+                    "int i1 = Integer.parseInt(s1); \n" +
+                    "int i2 = Integer.parseInt(s2); \n" +
+
+                    "System.out.println(i1 - i2); \n" +
+                "} \n" +
+            "} \n" +
+        "} \n"
+        );
+*/
         CSharpLexer lexer = new CSharpLexer(input);
         CommonTokenStream tokens = new CommonTokenStream(lexer);
         CSharpParser parser = new CSharpParser(tokens);

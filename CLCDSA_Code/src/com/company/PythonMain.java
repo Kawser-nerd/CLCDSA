@@ -14,7 +14,7 @@ import java.io.IOException;
 
 public class PythonMain  extends PythonParserBaseVisitor {
     public static void main(String[] args) throws IOException {
-        CharStream input = CharStreams.fromFileName("C:\\Users\\kwnaf\\IdeaProjects\\antlrTesting\\src\\testpy.py");
+        CharStream input = CharStreams.fromFileName("C:\\Users\\kawser\\IdeaProjects\\CLCDSA\\CLCDSA_Code\\src\\testpy.py");
         PythonLexer lexer = new PythonLexer(input);
         CommonTokenStream tokens = new CommonTokenStream(lexer);
         PythonParser parser = new PythonParser(tokens);
@@ -24,14 +24,14 @@ public class PythonMain  extends PythonParserBaseVisitor {
         PythonListener listener = new PythonListener(parser);
         walker.walk(listener, tree);
 
-        System.out.println(listener.getNoofVariable()); // Number of variables
-        System.out.println(listener.getNoofArguments()); // Number of Arguments
-        System.out.println(listener.getNoofOperators()); // Number of Operators
-        System.out.println(listener.getNoofExpressions()); // Number of Expressions
-        System.out.println(listener.getNoofloops()); // Number of Loops
-        System.out.println(listener.getNoofOperands()); // Number of Operands
-        System.out.println(listener.getNoofexceptions()); // Number of Exceptions Called
-        System.out.println(listener.getNoofexceptionclause()); // Number of Exception Handled
-        System.out.println(listener.getMccabecomplexity()); // Mccabe Complexity
+        System.out.println(listener.getNoOfVariables()); // Number of variables
+        System.out.println(listener.getNoOfArguments()); // Number of Arguments
+        System.out.println(listener.getNoOfOperators()); // Number of Operators
+        System.out.println(listener.getNoOfExpressions()); // Number of Expressions
+        System.out.println(listener.getNoOfLoops()); // Number of Loops
+        System.out.println(listener.getNoOfOperands()); // Number of Operands
+        System.out.println(listener.getNoOfExceptions()); // Number of Exceptions Called
+        System.out.println(listener.getNoOfExceptionClauses()); // Number of Exception Handled
+        System.out.println(listener.getMccabeComplexity()); // Mccabe Complexity
     }
 }

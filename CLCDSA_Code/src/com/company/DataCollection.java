@@ -7,9 +7,7 @@ import JavaParser.JavaParser;
 import PythonParser.PythonLexer;
 import PythonParser.PythonParser;
 import com.opencsv.CSVWriter;
-import org.antlr.v4.runtime.CharStream;
-import org.antlr.v4.runtime.CharStreams;
-import org.antlr.v4.runtime.CommonTokenStream;
+import org.antlr.v4.runtime.*;
 import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.ParseTreeWalker;
 
@@ -27,17 +25,18 @@ import java.util.stream.Stream;
 import static java.util.stream.Collectors.*;
 
 public class DataCollection {
-    private static String datafolder = "./Source Codes";
+    private static String datafolder = "./Source Codes/CodeNet";
 
     public static void main(String[] args) throws IOException {
-        String fileExtenstion = "java";
+        String fileExtenstion = "python";
 
         List<Path> allFiles = listAllFiles(fileExtenstion);
         AtomicInteger count = new AtomicInteger();
 
         switch (fileExtenstion){
             case "java":
-                CSVWriter javaWriter =new CSVWriter(new FileWriter("./JavaCodeFeatureFiles.csv"));
+                //CSVWriter javaWriter =new CSVWriter(new FileWriter("./JavaCodeFeatureFiles.csv"));
+                CSVWriter javaWriter =new CSVWriter(new FileWriter("./CodeNetJavaCodeFeatureFiles.csv"));
                 allFiles.forEach(x -> {
                     try {
                         JavaCollection(x.toAbsolutePath(), javaWriter);
@@ -51,7 +50,8 @@ public class DataCollection {
                 javaWriter.close();
                 break;
             case "csharp":
-                CSVWriter csharpWriter =new CSVWriter(new FileWriter("./CSharpCodeFeatureFiles.csv"));
+                //CSVWriter csharpWriter =new CSVWriter(new FileWriter("./CSharpCodeFeatureFiles.csv"));
+                CSVWriter csharpWriter =new CSVWriter(new FileWriter("./CodeNetCSharpCodeFeatureFiles.csv"));
                 allFiles.forEach(x -> {
                     try {
                         CSharpCollection(x.toAbsolutePath(), csharpWriter);
@@ -65,7 +65,8 @@ public class DataCollection {
                 csharpWriter.close();
                 break;
             case "python":
-                CSVWriter pythonWriter =new CSVWriter(new FileWriter("./PythonCodeFeatureFiles.csv"));
+                //CSVWriter pythonWriter =new CSVWriter(new FileWriter("./PythonCodeFeatureFiles.csv"));
+                CSVWriter pythonWriter =new CSVWriter(new FileWriter("./CodeNetPythonCodeFeatureFiles.csv"));
                 allFiles.forEach(x -> {
                     try {
                         PythonCollection(x.toAbsolutePath(), pythonWriter);
@@ -116,7 +117,8 @@ public class DataCollection {
 
     private static void JavaCollection(Path path, CSVWriter writer) throws IOException {
         String[] features = new String[10];
-        features[0] = path.getParent().toString();
+        //features[0] = path.getParent().toString();
+        features[0] = path.toAbsolutePath().toString();
 
         /// Parsing Code ///
         CharStream input = CharStreams.fromFileName(String.valueOf(path.toAbsolutePath()));
@@ -137,7 +139,7 @@ public class DataCollection {
         features[6] = Integer.toString(listener.getNoofoperands());
         features[7] = Integer.toString(listener.getNoofexceptions());
         features[8] = Integer.toString(listener.getNoofexceptionclause());
-        features[9] = Integer.toString(listener.getMccablecomplex());
+        features[9] = Integer.toString(listener.getMccabecomplex());
 
         int totalFeatureValue = 0;
         for(int i = 1; i < features.length; i++)
@@ -149,19 +151,36 @@ public class DataCollection {
     }
     private static void CSharpCollection(Path path, CSVWriter writer) throws IOException {
         String[] features = new String[10];
-        features[0] = path.getParent().toString();
+        features[0] = path.toAbsolutePath().toString();
 
-        /// Parsing Code ///
-        CharStream input = CharStreams.fromFileName(String.valueOf(path.toAbsolutePath()));
+        // === Read and preprocess C# source ===
+        String rawCode = Files.readString(path);
+        // Strip lines starting with # (preprocessor directives)
+        String cleanedCode = rawCode.replaceAll("(?m)^\\s*#.*", "");
+
+        // === Lexing and Parsing ===
+        CharStream input = CharStreams.fromString(cleanedCode);
         CSharpLexer lexer = new CSharpLexer(input);
         CommonTokenStream tokens = new CommonTokenStream(lexer);
         CSharpParser parser = new CSharpParser(tokens);
-        ParseTree tree = parser.compilation_unit();
 
+        // === Add error listener to log skipped files ===
+        parser.removeErrorListeners();
+        parser.addErrorListener(new BaseErrorListener() {
+            @Override
+            public void syntaxError(Recognizer<?, ?> recognizer, Object offendingSymbol,
+                                    int line, int charPositionInLine,
+                                    String msg, RecognitionException e) {
+                System.err.println("Syntax error in file: " + path + " at line " + line + ":" + charPositionInLine + " - " + msg);
+            }
+        });
+
+        ParseTree tree = parser.compilation_unit();
         ParseTreeWalker walker = new ParseTreeWalker();
         CSharpListener listener = new CSharpListener(parser);
         walker.walk(listener, tree);
 
+        // === Feature Extraction ===
         features[1] = Integer.toString(listener.getNoofvariables());
         features[2] = Integer.toString(listener.getNoofArguments());
         features[3] = Integer.toString(listener.getNoofOperators());
@@ -172,16 +191,14 @@ public class DataCollection {
         features[8] = Integer.toString(listener.getNoofHandledExceptions());
         features[9] = Integer.toString(listener.getMccabecomplex());
 
-        int totalFeatureValue = 0;
-        for(int i = 1; i < features.length; i++)
-            totalFeatureValue = totalFeatureValue + Integer.parseInt(features[i]);
-
-        if(totalFeatureValue>0)
-            writer.writeNext(features);
+        // === Write to CSV ===
+        writer.writeNext(features);
     }
+
     private static void PythonCollection(Path path, CSVWriter writer) throws IOException {
         String[] features = new String[10];
-        features[0] = path.getParent().toString();
+        //features[0] = path.getParent().toString();
+        features[0] = path.toAbsolutePath().toString();
 
         /// Parsing Code ///
         CharStream input = CharStreams.fromFileName(String.valueOf(path.toAbsolutePath()));
@@ -194,15 +211,15 @@ public class DataCollection {
         PythonListener listener = new PythonListener(parser);
         walker.walk(listener, tree);
 
-        features[1] = Integer.toString(listener.getNoofVariable());
-        features[2] = Integer.toString(listener.getNoofArguments());
-        features[3] = Integer.toString(listener.getNoofOperators());
-        features[4] = Integer.toString(listener.getNoofExpressions());
-        features[5] = Integer.toString(listener.getNoofloops());
-        features[6] = Integer.toString(listener.getNoofOperands());
-        features[7] = Integer.toString(listener.getNoofexceptions());
-        features[8] = Integer.toString(listener.getNoofexceptionclause());
-        features[9] = Integer.toString(listener.getMccabecomplexity());
+        features[1] = Integer.toString(listener.getNoOfVariables());
+        features[2] = Integer.toString(listener.getNoOfArguments());
+        features[3] = Integer.toString(listener.getNoOfOperators());
+        features[4] = Integer.toString(listener.getNoOfExceptions());
+        features[5] = Integer.toString(listener.getNoOfLoops());
+        features[6] = Integer.toString(listener.getNoOfOperands());
+        features[7] = Integer.toString(listener.getNoOfExceptions());
+        features[8] = Integer.toString(listener.getNoOfExceptionClauses());
+        features[9] = Integer.toString(listener.getMccabeComplexity());
 
         int totalFeatureValue = 0;
         for(int i = 1; i < features.length; i++)

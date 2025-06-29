@@ -16,7 +16,7 @@ public class Main  extends JavaParserBaseVisitor {
     public static void main(String[] args) throws IOException {
 	// write your code here
 
-        CharStream input = CharStreams.fromFileName("C:\\Users\\kawser\\IdeaProjects\\CLCDSA\\CLCDSA_Code\\src\\test.java");
+        CharStream input = CharStreams.fromFileName("C:\\Users\\kawser\\IdeaProjects\\CLCDSA\\Source Codes\\AtCoder\\abc001\\A\\4738062.java");
         JavaLexer lexer = new JavaLexer(input);
         CommonTokenStream tokens = new CommonTokenStream(lexer);
         JavaParser parser = new JavaParser(tokens); // Parser Created
@@ -34,6 +34,6 @@ public class Main  extends JavaParserBaseVisitor {
         System.out.println(listener.getNoofoperands()); // No of Operands
         System.out.println(listener.getNoofexceptions()); // No of Exceptions
         System.out.println(listener.getNoofexceptionclause()); // No of Exception Handled
-        System.out.println(listener.getMccablecomplex()); // Mccabe Complexity
+        System.out.println(listener.getMccabecomplex()); // Mccabe Complexity
     }
 }

@@ -5,6 +5,21 @@ import java.util.*;
 import static java.lang.System.*;
 
 public class test {
+    public static void main(String[] args){
+        int bonus, sales = 1000;
+        if(sales < 5000)
+            bonus = 200;
+        else if(sales < 7500)
+            bonus = 500;
+        else if(sales < 100000)
+            bonus = 750;
+        else
+            bonus = 1250;
+        System.out.println(bonus);
+    }
+}
+/*
+public class test {
     public static void main(String[] args) throws IOException {
         try {
             Scanner sc = new Scanner(System.in);
@@ -137,3 +152,4 @@ public class test {
         return 0;
     }
 }
+*/
